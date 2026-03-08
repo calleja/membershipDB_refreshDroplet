@@ -1,0 +1,97 @@
+# .env – keep this out of source control!
+SRC_DB_HOST=10.0.1.5
+SRC_DB_PORT=3306
+SRC_DB_USER=reader
+SRC_DB_PASS=secret1
+SRC_DB_NAME=civicrm
+
+TGT_DB_HOST=10.0.1.6
+TGT_DB_PORT=3306
+TGT_DB_USER=importer
+TGT_DB_PASS=secret2
+TGT_DB_NAME=membership_db
+
+
+Once you’ve copied the project tree onto the host (e.g. /usr/local/src/uv or
+/opt/uv or wherever you prefer) the “deployment” is the same as any small
+Python wheel/CLI package:
+
+create/activate a virtualenv (optional but highly recommended):
+sudo apt install python3-venv          # if not already installed
+cd /usr/local/src/uv
+python3 -m venv venv
+. venv/bin/activate
+
+install the package
+pip install --upgrade pip
+pip install .
+
+– this will compile a wheel and copy the uv package under
+venv/lib/python3.*/site‑packages and create an executable uv script in
+venv/bin.
+– if you prefer a system‑wide install, drop the venv step and run
+pip install --user . or sudo pip install . (watch the usual
+permission warnings).
+
+configure your environment:
+
+create /usr/local/src/uv/.env (or set the same variables in whatever
+service/cron job runs the script) with the six SRC_DB_…/TGT_DB_…
+entries.
+ensure the server has network access to both droplets and that the
+MySQL users you’ve specified have the privileges described earlier.
+run the CLI:
+# either from inside the venv, or prefix with the full path to `uv`
+uv query --start 20250201 --end 20250228 --output /tmp/result.csv
+uv validate --input /tmp/result.csv
+uv import --input /tmp/result.csv     # once implemented/ready
+
+automation: wrap the same commands in a cron job or systemd unit, or
+execute them from your self‑hosted Actions runner.
+
+Missing dependencies – on a minimal droplet you must install
+python3-venv, python3-pip (for a venv) or at least python3. The
+pure‑Python mysql-connector-python package has no external requirements,
+but if you switch later to mysqlclient you’ll need libmysqlclient-dev
+etc.
+
+Path issues – the only hard‑coded path in the code is the relative
+lookup of the SQL file; because it’s computed from __file__ it will work
+wherever the package is installed, but if you move the SQL elsewhere you
+’ll need to update SQL_PATH or use pkg_resources.
+
+Environment variables – forgetting to set SRC_DB_HOST/… etc. will
+cause KeyError exceptions on startup. The .env loader is executed when
+import uv runs, so make sure the file is readable and at the top level of
+the project.
+
+Network connectivity – the host needs to be able to reach the target
+droplet’s MySQL port (usually 3306) over the VPC; if you’re running the
+runner inside a container you may need to expose ports or use the droplet’s
+private IP.
+
+Time/date formatting – the CLI accepts only YYYYMMDD. Give an out‑of‑
+range value and it will raise ValueError; wrap calls in scripts with
+proper validation or convert from other formats.
+
+File locations & permissions – writing CSVs to a location the
+application user can’t write will cause an IOError. Don’t hardcode paths
+in the code; pass them via --output/--input or configure via environment.
+
+Uncaught exceptions – on the host you’ll want to run the commands via a
+wrapper that logs stdout/stderr and sets appropriate exit codes; otherwise
+an uncaught database error will crash the process with little context.
+
+Dependency upgrades – since the droplet is “minimal”, future
+pip install --upgrade may pull in a newer connector that changes behavior;
+pin versions in pyproject.toml if you need stability.
+
+Python version – ensure Python ≥ 3.8 is installed; the pyproject.toml
+classifiers indicate 3.8 but the code should work on 3.10/3.11 too.
+
+If you follow the above pattern the transition from your local workspace to a
+remote server is straightforward: the only pieces that move are the package
+files themselves plus the .env with appropriate credentials and the SQL file
+(which is already included).
+
+Raptor mini (Preview) • 1x
