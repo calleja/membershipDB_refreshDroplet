@@ -1,11 +1,12 @@
 import os
 import pytest
 import mysql.connector
+from dotenv import load_dotenv
 
 from uv import query_runner
 
 
-def src_creds():
+def src_creds_orig():
     return {
         'host': os.environ['SRC_DB_HOST'],
         'port': int(os.environ.get('SRC_DB_PORT', 3306)),
@@ -14,6 +15,13 @@ def src_creds():
         'database': os.environ['SRC_DB_NAME'],
     }
 
+def src_creds():
+    load_dotenv('./.env')
+    user = os.getenv('SRC_DB_USER')
+    password = os.getenv('SRC_DB_PASSWORD')
+    host = os.getenv('SRC_DB_HOST')
+    port = os.getenv('SRC_DB_PORT')
+    database = os.getenv('SRC_DB_NAME')
 
 def tgt_creds():
     return {
@@ -32,6 +40,7 @@ def tgt_conn():
     conn.close()
 
 
+@pytest.mark.connect
 def test_target_connection(tgt_conn):
     assert tgt_conn.is_connected()
 
