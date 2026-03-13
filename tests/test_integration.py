@@ -3,7 +3,7 @@ import pytest
 import mysql.connector
 from dotenv import load_dotenv
 
-from uv import query_runner
+from src.pipeline import query_runner
 
 
 def src_creds_orig():
