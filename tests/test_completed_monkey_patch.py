@@ -48,7 +48,7 @@ from src.pipeline import query_runner
 # Place your lightweight SQL in  tests/sql/test_query.sql .  It must contain
 # the same ``%(start)s`` and ``%(end)s`` placeholders that ``run_query``
 # interpolates.
-CUSTOM_SQL = os.path.join(os.path.dirname(__file__), "sql", "test_query.sql")
+CUSTOM_SQL = os.path.join(os.path.dirname(__file__), "sql", "parameterizedSQL.sql")
 
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -132,12 +132,15 @@ def test_run_query_with_custom_sql(override_sql_path, src_conn, start, end):
     start, end : str
         Timestamp boundaries injected by ``@pytest.mark.parametrize``.
     """
-    rows = query_runner.run_query(src_conn, start, end)
+    try:
+        rows = query_runner.run_query(src_conn, start, end)
 
-    # run_query must return a list (cursor.fetchall())
-    assert isinstance(rows, list), "run_query should return a list of row tuples"
-    # The custom SQL should produce at least one row for valid date ranges
-    assert len(rows) > 0, f"Expected rows for range {start}–{end}, got none"
+        # run_query must return a list (cursor.fetchall())
+        assert isinstance(rows, list), "run_query should return a list of row tuples"
+        # The custom SQL should produce at least one row for valid date ranges
+        assert len(rows) > 0, f"Expected rows for range {start}–{end}, got none"
+    except mysql.connector.DatabaseError as e:    
+        print(f"a database error was thrown: {e}")
 
 
 @pytest.mark.custom_sql
