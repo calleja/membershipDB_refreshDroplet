@@ -71,3 +71,9 @@ def run_query(conn, start: str, end: str):
     cur = conn.cursor()
     cur.execute(formatted)
     return cur.fetchall()
+
+"""
+downstream python code is expecting the columns in this format: 'Assignee_Name_act', 'Target_Name_act', 'Source_Email_act',
+       'Target_Email_act', 'Activity_Type_act', 'Subject_act',
+       'Activity_Date_act', 'Activity_Status_act', 'Activity_Details_act'
+"""
