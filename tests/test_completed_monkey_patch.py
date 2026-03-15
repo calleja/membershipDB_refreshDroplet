@@ -48,8 +48,8 @@ from src.pipeline import query_runner
 # Place your lightweight SQL in  tests/sql/test_query.sql .  It must contain
 # the same ``%(start)s`` and ``%(end)s`` placeholders that ``run_query``
 # interpolates.
-CUSTOM_SQL = os.path.join(os.path.dirname(__file__), "sql", "parameterizedSQL.sql")
-
+#CUSTOM_SQL = os.path.join(os.path.dirname(__file__), "sql", "parameterizedSQL.sql")
+CUSTOM_SQL = os.path.join(os.path.dirname(__file__), "..", "parameterizedSQL.sql")
 
 # ══════════════════════════════════════════════════════════════════════════
 # Helpers
