@@ -49,6 +49,7 @@
 
 6. **Add `ensure_table()` helper** *(parallel with step 5)*:
    - `CREATE TABLE IF NOT EXISTS selectActivityReport_temp` with the 9 columns and appropriate MySQL types (TEXT for names, VARCHAR(255) for emails, INT for type/status, DATETIME for date, LONGTEXT for details)
+   - overwrite existing table if pre exists in target database
 
 ### Phase 4 — Python: Refactor `validator.py` *(depends on Phase 2)*
 
@@ -108,7 +109,7 @@
         Activity_Details_act LONGTEXT
     );
     ```
-
+- if the table exists, delete its contents but do not drop it (preserves schema, permissions, etc.)
 ---
 
 ## Relevant Files
