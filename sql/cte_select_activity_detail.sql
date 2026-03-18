@@ -74,21 +74,20 @@ sources AS (
       AND act.activity_type_id IN (35, 36, 7)
 )
 
+-- REFACTORED: final SELECT reduced from 14 columns to 9 and aliased
+-- to match downstream column names expected by the target table
+-- selectActivityReport_temp.  Dropped columns: contact_source_id,
+-- contact_assignee_id, contact_target_id, activity_id, source_record_id.
 SELECT
-    GROUP_CONCAT(DISTINCT a.contact_assignee    SEPARATOR '\n\n;') AS civicrm_contact_contact_assignee,
-    GROUP_CONCAT(DISTINCT t.contact_target      SEPARATOR '\n\n;') AS civicrm_contact_contact_target,
-    GROUP_CONCAT(DISTINCT s.contact_source_id   SEPARATOR '\n\n;') AS civicrm_contact_contact_source_id,
-    GROUP_CONCAT(DISTINCT a.contact_assignee_id SEPARATOR '\n\n;') AS civicrm_contact_contact_assignee_id,
-    GROUP_CONCAT(DISTINCT t.contact_target_id   SEPARATOR '\n\n;') AS civicrm_contact_contact_target_id,
-    GROUP_CONCAT(DISTINCT s.email_source        SEPARATOR '\n\n;') AS civicrm_email_contact_source_email,
-    GROUP_CONCAT(DISTINCT t.email_target        SEPARATOR '\n\n;') AS civicrm_email_contact_target_email,
-    act.id                    AS civicrm_activity_id,
-    act.source_record_id      AS civicrm_activity_source_record_id,
-    act.activity_type_id      AS civicrm_activity_activity_type_id,
-    act.subject               AS civicrm_activity_activity_subject,
-    act.activity_date_time    AS civicrm_activity_activity_date_time,
-    act.status_id             AS civicrm_activity_status_id,
-    act.details               AS civicrm_activity_details
+    GROUP_CONCAT(DISTINCT a.contact_assignee    SEPARATOR '\n\n;') AS Assignee_Name_act,
+    GROUP_CONCAT(DISTINCT t.contact_target      SEPARATOR '\n\n;') AS Target_Name_act,
+    GROUP_CONCAT(DISTINCT s.email_source        SEPARATOR '\n\n;') AS Source_Email_act,
+    GROUP_CONCAT(DISTINCT t.email_target        SEPARATOR '\n\n;') AS Target_Email_act,
+    act.activity_type_id      AS Activity_Type_act,
+    act.subject               AS Subject_act,
+    act.activity_date_time    AS Activity_Date_act,
+    act.status_id             AS Activity_Status_act,
+    act.details               AS Activity_Details_act
 FROM civicrm_activity act
 LEFT JOIN targets   t ON act.id = t.activity_id
 LEFT JOIN assignees a ON act.id = a.activity_id
@@ -99,9 +98,10 @@ WHERE act.is_test = 0
   AND act.activity_date_time >= %(start)s
   AND act.activity_date_time <= %(end)s
   AND act.activity_type_id IN (35, 36, 7)
+-- REFACTORED: GROUP BY trimmed to match the 5 non-aggregated columns
+-- (removed act.id, act.source_record_id which are no longer selected)
 GROUP BY
     act.id,
-    act.source_record_id,
     act.activity_type_id,
     act.subject,
     act.activity_date_time,

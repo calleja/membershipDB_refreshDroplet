@@ -41,15 +41,15 @@
    - Change signature: `run(rows: list, cols: list)` — accept in-memory data, not a CSV path
    - Guard: assert `rows` is not empty before proceeding (defense-in-depth, `query_runner.run()` already guards)
    - Connect to target via existing `tgt_creds()`
-   - Call `ensure_table()` (step 6)
-   - `DELETE FROM selectActivityReport_temp` (not TRUNCATE — see Decisions)
+   - Call `ensure_table()` (step 6) — this drops and recreates the table, guaranteeing a clean schema every run
    - `cursor.executemany()` with parameterized INSERT
    - `conn.commit()` on success, `conn.rollback()` on exception
    - Return inserted row count
 
 6. **Add `ensure_table()` helper** *(parallel with step 5)*:
-   - `CREATE TABLE IF NOT EXISTS selectActivityReport_temp` with the 9 columns and appropriate MySQL types (TEXT for names, VARCHAR(255) for emails, INT for type/status, DATETIME for date, LONGTEXT for details)
-   - overwrite existing table if pre exists in target database
+   - Run `DROP TABLE IF EXISTS selectActivityReport_temp` followed by `CREATE TABLE selectActivityReport_temp` with the 9 columns and appropriate MySQL types (TEXT for names, VARCHAR(255) for emails, INT for type/status, DATETIME for date, LONGTEXT for details)
+   - This guarantees the schema always matches the current column definitions — no stale columns, no type mismatches from prior runs or manual edits
+   - Both statements are DDL (implicit commit in MySQL), so they execute outside the subsequent INSERT transaction. This is acceptable because the table is a staging table rebuilt from scratch every run
 
 ### Phase 4 — Python: Refactor `validator.py` *(depends on Phase 2)*
 
@@ -109,7 +109,8 @@
         Activity_Details_act LONGTEXT
     );
     ```
-- if the table exists, delete its contents but do not drop it (preserves schema, permissions, etc.)
+   Use `DROP TABLE IF EXISTS` + `CREATE TABLE` (not `CREATE TABLE IF NOT EXISTS`) so that schema drift from manual alterations is automatically corrected each run.
+
 ---
 
 ## Relevant Files
@@ -135,7 +136,7 @@
 
 - **Column renaming in SQL** — aliases in CTE final SELECT, not a Python mapping dict
 - **CTE replaces temp-table SQL** — `cte_select_activity_detail.sql` is production; requires MySQL 8.0+ on source
-- **`DELETE FROM` instead of `TRUNCATE`** — `TRUNCATE` is DDL in MySQL and causes an implicit commit, breaking transactional rollback. `DELETE FROM` is DML and participates in the transaction, so a failed `executemany()` can roll back without leaving the table empty
+- **`DROP TABLE IF EXISTS` + `CREATE TABLE`** — the staging table is rebuilt from scratch each run, so `ensure_table()` drops and recreates it. This eliminates schema drift risk (e.g., someone manually altered a column). Both are DDL with implicit commits in MySQL, but since the table is staging-only and always fully rewritten, this is acceptable. The subsequent `executemany()` + `commit()` is still wrapped in try/except with `rollback()` to protect the INSERT phase
 - **No CSV anywhere** — `--output` flag, `csv.writer`, `csv.reader` all removed
 - **`sync` is the orchestration command** — replaces the 3-step CLI workflow
 
@@ -145,4 +146,4 @@
 
 2. **SSH tunnel** — `plan-sshBridgeDecorator.prompt.md` suggests an SSH bridge may be needed for DB connectivity from the Droplet. This refactor doesn't address networking — both source and target must be reachable.
 
-3. **Transaction safety** — the plan uses `DELETE FROM` + `executemany` + `commit` inside a try/except with `rollback`. If the target table is large, `DELETE FROM` may be slower than `TRUNCATE`. If transactional safety isn't critical (table is staging-only and rebuilt each run), `TRUNCATE` is acceptable.
+3. **Transaction safety** — `ensure_table()` uses DDL (`DROP` + `CREATE`) which auto-commits in MySQL, so the table is empty before `executemany()` begins. If `executemany()` fails, `rollback()` leaves the table empty (no partial data). This is acceptable for a staging table that is always fully rewritten. If partial-failure recovery is ever needed, consider inserting into a shadow table and swapping via `RENAME TABLE`.

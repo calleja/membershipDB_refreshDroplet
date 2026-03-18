@@ -33,6 +33,7 @@ __init__.py must exist — without it, Python won't treat pipeline as a package.
 If either is missing, the file will fail at import time with the same ImportError you saw before."""
 
 import os
+import datetime
 import pytest
 import mysql.connector
 from dotenv import load_dotenv
@@ -45,11 +46,12 @@ from dotenv import load_dotenv
 from src.pipeline import query_runner
 
 # ── Path to the alternate SQL file used by these tests ────────────────────
-# Place your lightweight SQL in  tests/sql/test_query.sql .  It must contain
-# the same ``%(start)s`` and ``%(end)s`` placeholders that ``run_query``
-# interpolates.
-CUSTOM_SQL = os.path.join(os.path.dirname(__file__), "sql", "parameterizedSQL.sql")
-#CUSTOM_SQL = os.path.join(os.path.dirname(__file__), "..", "parameterizedSQL.sql")
+# Points to the lightweight parameterized query in the project's sql/
+# directory.  This file returns a different column set than the production
+# CTE query, so tests using override_sql_path exercise a different schema.
+CUSTOM_SQL = os.path.join(
+    os.path.dirname(__file__), "..", "sql", "parameterizedSQL.sql"
+)
 
 # ══════════════════════════════════════════════════════════════════════════
 # Helpers
@@ -167,10 +169,118 @@ def test_load_sql_without_override():
     """Sanity check: without the ``override_sql_path`` fixture, ``load_sql``
     should read the *original* production SQL file, proving the patch is
     scoped correctly.
+
+    Production SQL is now the CTE query (cte_select_activity_detail.sql),
+    which does NOT use temp tables.  We verify it contains 'WITH targets'
+    — a CTE-specific keyword that the lightweight test SQL lacks.
     """
     sql_text = query_runner.load_sql()
 
-    # The production file contains this temp-table name
-    assert "civicrm_tmp_e_dflt" in sql_text, (
-        "Without override, load_sql() should return the production SQL"
+    # Production CTE query starts with a WITH clause; the old temp-table
+    # query used civicrm_tmp_e_dflt — that string should NOT appear now.
+    assert "WITH targets AS" in sql_text, (
+        "Without override, load_sql() should return the CTE production SQL"
     )
+    assert "civicrm_tmp_e_dflt" not in sql_text, (
+        "Production SQL should be the CTE rewrite, not the legacy temp-table query"
+    )
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# New tests: resultset structural validation
+# ══════════════════════════════════════════════════════════════════════════
+
+@pytest.mark.custom_sql
+def test_resultset_row_width(src_conn):
+    """Verify that every row returned by ``run_query`` has exactly 9 elements.
+
+    This catches schema drift or miscounted aliases in the CTE query before
+    the resultset is handed to ``importer.run()`` for insertion.  Uses the
+    production SQL (no override) so it validates the real column count.
+
+    Parameters
+    ----------
+    src_conn : fixture
+        Live MySQL connection to the source database.
+    """
+    try:
+        rows = query_runner.run_query(src_conn, "20220101000000", "20220101235959")
+
+        assert isinstance(rows, list), "run_query should return a list"
+        assert len(rows) > 0, "Need at least one row to validate width"
+
+        for i, row in enumerate(rows):
+            assert len(row) == 9, (
+                f"Row {i} has {len(row)} elements, expected 9. "
+                f"Check column aliases in cte_select_activity_detail.sql"
+            )
+    except mysql.connector.DatabaseError as e:
+        print(f"[test_resultset_row_width] Database error: {e}")
+        raise
+
+
+@pytest.mark.custom_sql
+def test_resultset_column_types(src_conn):
+    """Inspect the first row from ``run_query`` and assert each element's
+    Python type matches what the target table expects.
+
+    Validates that the tuple is safe for ``cursor.executemany()`` against
+    the selectActivityReport_temp schema:
+
+      Position  Column               Expected Python type
+      --------  -------------------  ---------------------------
+      0         Assignee_Name_act    str or None
+      1         Target_Name_act      str or None
+      2         Source_Email_act     str or None
+      3         Target_Email_act     str or None
+      4         Activity_Type_act    int
+      5         Subject_act          str or None
+      6         Activity_Date_act    datetime.datetime
+      7         Activity_Status_act  int
+      8         Activity_Details_act str or None
+
+    Parameters
+    ----------
+    src_conn : fixture
+        Live MySQL connection to the source database.
+    """
+    try:
+        rows = query_runner.run_query(src_conn, "20220101000000", "20220101235959")
+
+        assert len(rows) > 0, "Need at least one row to validate types"
+
+        row = rows[0]
+
+        # Positions 0-3: nullable text fields (names and emails)
+        for pos in (0, 1, 2, 3):
+            assert isinstance(row[pos], (str, type(None))), (
+                f"Column {pos} should be str or None, got {type(row[pos]).__name__}"
+            )
+
+        # Position 4: Activity_Type_act — integer activity type ID
+        assert isinstance(row[4], int), (
+            f"Column 4 (Activity_Type_act) should be int, got {type(row[4]).__name__}"
+        )
+
+        # Position 5: Subject_act — nullable text
+        assert isinstance(row[5], (str, type(None))), (
+            f"Column 5 (Subject_act) should be str or None, got {type(row[5]).__name__}"
+        )
+
+        # Position 6: Activity_Date_act — datetime
+        assert isinstance(row[6], datetime.datetime), (
+            f"Column 6 (Activity_Date_act) should be datetime, got {type(row[6]).__name__}"
+        )
+
+        # Position 7: Activity_Status_act — integer status ID
+        assert isinstance(row[7], int), (
+            f"Column 7 (Activity_Status_act) should be int, got {type(row[7]).__name__}"
+        )
+
+        # Position 8: Activity_Details_act — nullable text (LONGTEXT)
+        assert isinstance(row[8], (str, type(None))), (
+            f"Column 8 (Activity_Details_act) should be str or None, got {type(row[8]).__name__}"
+        )
+    except mysql.connector.DatabaseError as e:
+        print(f"[test_resultset_column_types] Database error: {e}")
+        raise

@@ -3,15 +3,17 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "uv"
+name = "activity-pipeline"
 version = "0.1.0"
+# description = "Source-to-target sync pipeline for CiviCRM activity reports into membership_ard"
 description = "Query runner for membership_db updates"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 license = { text = "MIT" }
 classifiers = [
-    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.10"
 ]
+# requires-python = ">=3.8"
 
 [project.dependencies]
 mysql-connector-python = "*"
@@ -21,4 +23,20 @@ python-dotenv = "*"
 test = ["pytest"]
 
 [project.scripts]
-uv = "uv.cli:main"
+# NOTE: this entry point assumes `src` is on sys.path.  If the package is
+# installed via `pip install -e .`, setuptools may not automatically add
+# `src/` to the path.  Consider one of:
+#   (A) Move src/pipeline/ to a top-level pipeline/ package, then use:
+#       activity-pipeline = "pipeline.cli:main"
+#   (B) Add a [tool.setuptools.packages.find] section with where = ["src"]
+#       and change the entry point to:
+#       activity-pipeline = "pipeline.cli:main"
+activity-pipeline = "src.pipeline.cli:main"
+
+# [tool.setuptools.packages.find]
+# where = ["src"]
+
+# [tool.pytest.ini_options]
+# pythonpath = ["src"]
+# Note: tests/pytest.ini already sets pythonpath = src for pytest.
+# If you consolidate config here, remove tests/pytest.ini to avoid conflicts.
