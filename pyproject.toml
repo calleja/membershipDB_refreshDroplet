@@ -5,24 +5,27 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "activity-pipeline"
 version = "0.1.0"
-# description = "Source-to-target sync pipeline for CiviCRM activity reports into membership_ard"
-description = "Query runner for membership_db updates"
-authors = ["Your Name <you@example.com>"]
+description = "Source-to-target sync pipeline for CiviCRM activity reports into membership_ard"
+authors = ["Luis Calleja"]
 readme = "README.md"
-license = { text = "MIT" }
 classifiers = [
     "Programming Language :: Python :: 3.10"
 ]
-# requires-python = ">=3.8"
+dependencies = [
+    "mysql-connector-python",
+    "python-dotenv"]
+requires-python = ">=3.10"
 
-[project.dependencies]
-mysql-connector-python = "*"
-python-dotenv = "*"
+#[project.dependencies]
+#mysql-connector-python = "*"
+#python-dotenv = "*"
 
 [project.optional-dependencies]
 test = ["pytest"]
 
 [project.scripts]
+activity-pipeline = "src.pipeline.cli:main"
+# installs a command as part of my package
 # NOTE: this entry point assumes `src` is on sys.path.  If the package is
 # installed via `pip install -e .`, setuptools may not automatically add
 # `src/` to the path.  Consider one of:
@@ -31,10 +34,11 @@ test = ["pytest"]
 #   (B) Add a [tool.setuptools.packages.find] section with where = ["src"]
 #       and change the entry point to:
 #       activity-pipeline = "pipeline.cli:main"
-activity-pipeline = "src.pipeline.cli:main"
+# ">activity-pipeline" command will be available after installing the package
 
-# [tool.setuptools.packages.find]
-# where = ["src"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 # [tool.pytest.ini_options]
 # pythonpath = ["src"]

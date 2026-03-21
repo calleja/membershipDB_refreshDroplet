@@ -7,13 +7,13 @@ temporarily overwritten using ``monkeypatch`` so that ``load_sql()`` reads
 from a lightweight test SQL file instead of the production parameterized query.
 
 Key concepts used:
-  - monkeypatch  — swap ``query_runner.SQL_PATH`` per-test to point at a
-                   custom SQL file under ``tests/sql/``.
+  - monkeypatch:  
+  — swap ``query_runner.SQL_PATH`` per-test to point at a custom SQL file under ``tests/sql/``.
   - parametrize  — run the same test body across several date ranges.
-  - marks        — ``@pytest.mark.custom_sql`` lets you selectively run
-                   only these tests with ``pytest -m custom_sql``.
-  - fixtures     — ``src_conn`` provides a reusable DB connection scoped
-                   to the test module.
+  - marks:        
+  — ``@pytest.mark.custom_sql`` lets you selectively run only these tests with ``pytest -m custom_sql``.
+  - fixtures:     
+  — ``src_conn`` provides a reusable DB connection scoped to the test module.
 """
 
 """
@@ -39,10 +39,7 @@ import mysql.connector
 from dotenv import load_dotenv
 
 # ── Import the module under test ──────────────────────────────────────────
-# ``query_runner`` is imported as a *module object* so that monkeypatch can
-# replace its ``SQL_PATH`` attribute at runtime.  ``load_sql()`` and
-# ``run_query()`` read SQL_PATH when called, so the patched value takes
-# effect immediately.
+# ``query_runner`` is imported as a *module object* so that monkeypatch can replace its ``SQL_PATH`` attribute at runtime.  ``load_sql()`` and ``run_query()`` read SQL_PATH when called, so the patched value takes effect immediately.
 from src.pipeline import query_runner
 
 # ── Path to the alternate SQL file used by these tests ────────────────────
