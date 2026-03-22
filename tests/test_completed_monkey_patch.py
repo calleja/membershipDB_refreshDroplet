@@ -216,6 +216,28 @@ def test_resultset_row_width(src_conn):
         raise
 
 
+def test_query(src_conn):
+    #src_conn returns a sql connector
+    start, end = ("20240101000000", "20240301235959")
+    sql = query_runner.load_sql() #just loading the SQL
+    formatted = sql % {'start': start, 'end': end}
+
+    try:
+        conn = src_conn() #return a connection object
+    except mysql.connector.Error as e:
+        print(f"[query_runner.run] Failed to connect to source database")
+        raise
+
+    try:
+        cursor = conn.cursor()
+        cursor.execute(formatted)
+        rows = cursor.fetchall()
+    except mysql.connector.Error as e:
+        print(f"[query_runner.run] Query execution failed")
+        raise
+    finally:
+        conn.close()
+
 @pytest.mark.custom_sql
 def test_resultset_column_types(src_conn):
     """Inspect the first row from ``run_query`` and assert each element's
