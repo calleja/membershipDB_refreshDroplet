@@ -167,31 +167,52 @@ def run_query(conn, start: str, end: str):
 
 
 def run_query2(conn, start: str, end: str):
-    # this version of the function passed the pytests
-    # start, end = ("20240101000000", "20240301235959")
-    # start, end = ("20240101000000", "20240301235959")
-    sql = load_sql()  # just loading the SQL that's identified at top of module
+    """Execute the CTE query, creating a DB connection if none is supplied.
+
+    Parameters
+    ----------
+    conn : mysql.connector connection or None
+        Caller-supplied open connection.  Pass None to let this function
+        open (and close) its own connection via src_creds().
+    start : str
+        Start timestamp in YYYYMMDDhhmmss format.
+    end : str
+        End timestamp in YYYYMMDDhhmmss format.
+
+    Returns
+    -------
+    list[tuple]
+        cursor.fetchall() rows.
+
+    Raises
+    ------
+    mysql.connector.Error
+        On connection or query failure.
+    """
+    sql = load_sql()
     formatted = sql % {"start": start, "end": end}
 
-    if conn == None:
+    # Capture ownership BEFORE conn is potentially reassigned below.
+    # If caller passed None, this function must create and own the connection.
+    owns_conn = conn is None
+
+    if owns_conn:
         try:
             conn = mysql.connector.connect(**src_creds())
         except mysql.connector.Error as e:
-            print(f"[query_runner.run] Failed to connect to source database")
+            print(f"[query_runner.run_query2] Failed to connect to source database: {e}")
             raise
-    else:
-        None
 
     try:
-        cursor = conn.cursor()  # cursor returns a MySQLCursor object
-        cursor.execute(
-            formatted
-        )  # execute() returns None; results must be fetched separately
+        cursor = conn.cursor()
+        cursor.execute(formatted)
         rows = cursor.fetchall()
-        # assert (len(rows) > 0, "rows is not greater than 0") <- assert statement for a pytest
+        return rows
     except mysql.connector.Error as e:
-        # this error type catches all mysql.connector Exceptions, so it's ambiguous
-        print(f"error thrown in run_query2: {e}")
-        # raise
+        print(f"[query_runner.run_query2] Query execution failed: {e}")
+        raise
     finally:
-        conn.close()
+        # Only close the connection if this function created it.
+        # Caller-supplied connections are the caller's responsibility to close.
+        if owns_conn:
+            conn.close()

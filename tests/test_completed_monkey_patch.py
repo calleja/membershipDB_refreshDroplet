@@ -245,23 +245,54 @@ def test_query(src_conn):
             formatted
         )  # execute() returns None; results must be fetched separately
         rows = cursor.fetchall()
-        assert (len(rows) > 0, "rows is not greater than 0")
-    except mysql.connector.Error as e:
-        print(f"the cursor 'try' block failed")
-        # raise
-    finally:
-        conn.close()
+        # Fixed: assert (expr, msg) always passes because it asserts a non-empty tuple.
+        assert len(rows) > 0, "rows is not greater than 0"
+    except mysql.connector.DatabaseError as e:
+        print(f"the cursor 'try' block failed: {e}")
+        raise
+    # NOTE: do NOT call conn.close() here.
+    # src_conn is module-scoped; closing it here destroys the shared connection
+    # and causes every subsequent test in this module to fail.
 
 
-def test_run_query2():
-    # just check to see if the query compiles
+@pytest.mark.custom_sql
+def test_cte_sql_compiles(src_conn):
+    """Verify that cte_select_activity_detail.sql parses and executes on the server.
+
+    This test deliberately does NOT use override_sql_path, so load_sql() reads
+    the production CTE file.  A mysql.connector.ProgrammingError here means the
+    server rejected the SQL syntax; a DatabaseError means a different server error.
+    Both are allowed to propagate so pytest reports the exact server error message.
+
+    Also asserts the resultset has exactly 9 columns, catching any schema drift
+    or miscounted aliases before importer.run() is called.
+    """
+    sql = query_runner.load_sql()
+    formatted = sql % {"start": "20220101000000", "end": "20220101235959"}
+    cur = src_conn.cursor()
+    # ProgrammingError raised here = SQL syntax problem on the server
+    cur.execute(formatted)
+    cur.fetchall()  # drain the result so the cursor is not left open
+    assert cur.description is not None, "cursor.description is None — query returned no columns"
+    assert len(cur.description) == 9, (
+        f"CTE query returned {len(cur.description)} columns, expected 9. "
+        "Check column aliases in cte_select_activity_detail.sql."
+    )
+
+
+def test_run_query2(src_conn):
+    """Exercise run_query2 with a caller-supplied connection (owns_conn=False path).
+
+    Passing src_conn verifies run_query2 does NOT close a caller-supplied
+    connection.  The module-scoped fixture connection stays open for later tests.
+    """
+    start, end = ("20240101000000", "20240301235959")
     try:
-        start, end = ("20240101000000", "20240301235959")
         rows = query_runner.run_query2(src_conn, start, end)
-    except ValueError as e:
-        print("set up failed")
-
-    assert (len(rows) > 0, "rows is not greater than 0")
+        assert isinstance(rows, list), "run_query2 should return a list of row tuples"
+        assert len(rows) > 0, "run_query2 returned no rows for the given range"
+    except mysql.connector.DatabaseError as e:
+        pytest.fail(f"run_query2 raised an unexpected database error: {e}")
 
 
 @pytest.mark.custom_sql
