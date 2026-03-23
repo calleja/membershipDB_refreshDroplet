@@ -7,12 +7,12 @@ temporarily overwritten using ``monkeypatch`` so that ``load_sql()`` reads
 from a lightweight test SQL file instead of the production parameterized query.
 
 Key concepts used:
-  - monkeypatch:  
+  - monkeypatch:
   — swap ``query_runner.SQL_PATH`` per-test to point at a custom SQL file under ``tests/sql/``.
   - parametrize  — run the same test body across several date ranges.
-  - marks:        
+  - marks:
   — ``@pytest.mark.custom_sql`` lets you selectively run only these tests with ``pytest -m custom_sql``.
-  - fixtures:     
+  - fixtures:
   — ``src_conn`` provides a reusable DB connection scoped to the test module.
 """
 
@@ -55,6 +55,7 @@ CUSTOM_SQL = os.path.join(
 # Helpers
 # ══════════════════════════════════════════════════════════════════════════
 
+
 def _src_creds() -> dict:
     """Load source-database credentials from the .env file.
 
@@ -64,9 +65,9 @@ def _src_creds() -> dict:
     """
     load_dotenv()  # reads .env from the project root (cwd when pytest runs)
     return {
-        "host":     os.environ["SRC_DB_HOST"],
-        "port":     int(os.environ.get("SRC_DB_PORT", 3306)),
-        "user":     os.environ["SRC_DB_USER"],
+        "host": os.environ["SRC_DB_HOST"],
+        "port": int(os.environ.get("SRC_DB_PORT", 3306)),
+        "user": os.environ["SRC_DB_USER"],
         "password": os.environ["SRC_DB_PASS"],
         "database": os.environ["SRC_DB_NAME"],
     }
@@ -75,6 +76,7 @@ def _src_creds() -> dict:
 # ══════════════════════════════════════════════════════════════════════════
 # Fixtures
 # ══════════════════════════════════════════════════════════════════════════
+
 
 @pytest.fixture(scope="module")
 def src_conn():
@@ -106,6 +108,7 @@ def override_sql_path(monkeypatch):
 # ══════════════════════════════════════════════════════════════════════════
 # Tests
 # ══════════════════════════════════════════════════════════════════════════
+
 
 @pytest.mark.custom_sql
 @pytest.mark.parametrize(
@@ -139,7 +142,7 @@ def test_run_query_with_custom_sql(override_sql_path, src_conn, start, end):
         assert isinstance(rows, list), "run_query should return a list of row tuples"
         # The custom SQL should produce at least one row for valid date ranges
         assert len(rows) > 0, f"Expected rows for range {start}–{end}, got none"
-    except mysql.connector.DatabaseError as e:    
+    except mysql.connector.DatabaseError as e:
         print(f"a database error was thrown: {e}")
 
 
@@ -157,9 +160,9 @@ def test_load_sql_reads_custom_file(override_sql_path):
     assert len(sql_text) > 0, "Custom SQL file should not be empty"
     # Confirm the text does NOT match the production query's signature
     # (adjust the substring to something unique to your production file)
-    assert "civicrm_tmp_e_dflt" not in sql_text, (
-        "load_sql() returned the production SQL — monkeypatch did not take effect"
-    )
+    assert (
+        "civicrm_tmp_e_dflt" not in sql_text
+    ), "load_sql() returned the production SQL — monkeypatch did not take effect"
 
 
 @pytest.mark.custom_sql
@@ -176,17 +179,18 @@ def test_load_sql_without_override():
 
     # Production CTE query starts with a WITH clause; the old temp-table
     # query used civicrm_tmp_e_dflt — that string should NOT appear now.
-    assert "WITH targets AS" in sql_text, (
-        "Without override, load_sql() should return the CTE production SQL"
-    )
-    assert "civicrm_tmp_e_dflt" not in sql_text, (
-        "Production SQL should be the CTE rewrite, not the legacy temp-table query"
-    )
+    assert (
+        "WITH targets AS" in sql_text
+    ), "Without override, load_sql() should return the CTE production SQL"
+    assert (
+        "civicrm_tmp_e_dflt" not in sql_text
+    ), "Production SQL should be the CTE rewrite, not the legacy temp-table query"
 
 
 # ══════════════════════════════════════════════════════════════════════════
 # New tests: resultset structural validation
 # ══════════════════════════════════════════════════════════════════════════
+
 
 @pytest.mark.custom_sql
 def test_resultset_row_width(src_conn):
@@ -206,44 +210,59 @@ def test_resultset_row_width(src_conn):
 
         assert isinstance(rows, list), "run_query should return a list"
         assert len(rows) > 0, "Need at least one row to validate width"
-        '''
+        """
         for i, row in enumerate(rows):
             assert len(row) == 9, (
                 f"Row {i} has {len(row)} elements, expected 9. "
                 f"Check column aliases in cte_select_activity_detail.sql"
             )
-        '''
+        """
     except mysql.connector.DatabaseError as e:
         print(f"[test_resultset_row_width] Database error: {e}")
         raise
 
 
 def test_query(src_conn):
-    #src_conn returns a sql connector
+    # src_conn returns a sql connector
     start, end = ("20240101000000", "20240301235959")
-    sql = query_runner.load_sql() #just loading the SQL
-    formatted = sql % {'start': start, 'end': end}
+    sql = query_runner.load_sql()  # just loading the SQL
+    formatted = sql % {"start": start, "end": end}
 
     try:
-        conn = src_conn #return a connection object via mysql.connector.connect
-        assert isinstance(conn, MySQLConnectionAbstract)  # covers both C and pure Python
+        conn = src_conn  # return a connection object via mysql.connector.connect
+        assert isinstance(
+            conn, MySQLConnectionAbstract
+        )  # covers both C and pure Python
     except mysql.connector.Error as e:
         print(f"the initial 'try' clause failed ")
         raise
     except TypeError as e:
         print("TypeError was thrown when trying to connect")
-    
+
     try:
-        cursor = conn.cursor() #cursor returns a MySQLCursor object
-        cursor.execute(formatted) #execute() returns None; results must be fetched separately
+        cursor = conn.cursor()  # cursor returns a MySQLCursor object
+        cursor.execute(
+            formatted
+        )  # execute() returns None; results must be fetched separately
         rows = cursor.fetchall()
-        assert(len(rows)>0, 'rows is not greater than 0')
+        assert (len(rows) > 0, "rows is not greater than 0")
     except mysql.connector.Error as e:
         print(f"the cursor 'try' block failed")
-        #raise
+        # raise
     finally:
         conn.close()
-    
+
+
+def test_run_query2():
+    # just check to see if the query compiles
+    try:
+        start, end = ("20240101000000", "20240301235959")
+        rows = query_runner.run_query2(src_conn, start, end)
+    except ValueError as e:
+        print("set up failed")
+
+    assert (len(rows) > 0, "rows is not greater than 0")
+
 
 @pytest.mark.custom_sql
 def test_resultset_column_types(src_conn):
@@ -279,34 +298,34 @@ def test_resultset_column_types(src_conn):
 
         # Positions 0-3: nullable text fields (names and emails)
         for pos in (0, 1, 2, 3):
-            assert isinstance(row[pos], (str, type(None))), (
-                f"Column {pos} should be str or None, got {type(row[pos]).__name__}"
-            )
+            assert isinstance(
+                row[pos], (str, type(None))
+            ), f"Column {pos} should be str or None, got {type(row[pos]).__name__}"
 
         # Position 4: Activity_Type_act — integer activity type ID
-        assert isinstance(row[4], int), (
-            f"Column 4 (Activity_Type_act) should be int, got {type(row[4]).__name__}"
-        )
+        assert isinstance(
+            row[4], int
+        ), f"Column 4 (Activity_Type_act) should be int, got {type(row[4]).__name__}"
 
         # Position 5: Subject_act — nullable text
-        assert isinstance(row[5], (str, type(None))), (
-            f"Column 5 (Subject_act) should be str or None, got {type(row[5]).__name__}"
-        )
+        assert isinstance(
+            row[5], (str, type(None))
+        ), f"Column 5 (Subject_act) should be str or None, got {type(row[5]).__name__}"
 
         # Position 6: Activity_Date_act — datetime
-        assert isinstance(row[6], datetime.datetime), (
-            f"Column 6 (Activity_Date_act) should be datetime, got {type(row[6]).__name__}"
-        )
+        assert isinstance(
+            row[6], datetime.datetime
+        ), f"Column 6 (Activity_Date_act) should be datetime, got {type(row[6]).__name__}"
 
         # Position 7: Activity_Status_act — integer status ID
-        assert isinstance(row[7], int), (
-            f"Column 7 (Activity_Status_act) should be int, got {type(row[7]).__name__}"
-        )
+        assert isinstance(
+            row[7], int
+        ), f"Column 7 (Activity_Status_act) should be int, got {type(row[7]).__name__}"
 
         # Position 8: Activity_Details_act — nullable text (LONGTEXT)
-        assert isinstance(row[8], (str, type(None))), (
-            f"Column 8 (Activity_Details_act) should be str or None, got {type(row[8]).__name__}"
-        )
+        assert isinstance(
+            row[8], (str, type(None))
+        ), f"Column 8 (Activity_Details_act) should be str or None, got {type(row[8]).__name__}"
     except mysql.connector.DatabaseError as e:
         print(f"[test_resultset_column_types] Database error: {e}")
         raise
