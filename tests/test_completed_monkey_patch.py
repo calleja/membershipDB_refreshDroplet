@@ -41,7 +41,7 @@ from mysql.connector.abstracts import MySQLConnectionAbstract
 
 # ── Import the module under test ──────────────────────────────────────────
 # ``query_runner`` is imported as a *module object* so that monkeypatch can replace its ``SQL_PATH`` attribute at runtime.  ``load_sql()`` and ``run_query()`` read SQL_PATH when called, so the patched value takes effect immediately.
-from src.pipeline import query_runner
+from src.pipeline import query_runner, importer
 
 # ── Path to the alternate SQL file used by these tests ────────────────────
 # Points to the lightweight parameterized query in the project's sql/
@@ -272,7 +272,9 @@ def test_cte_sql_compiles(src_conn):
     # ProgrammingError raised here = SQL syntax problem on the server
     cur.execute(formatted)
     cur.fetchall()  # drain the result so the cursor is not left open
-    assert cur.description is not None, "cursor.description is None — query returned no columns"
+    assert (
+        cur.description is not None
+    ), "cursor.description is None — query returned no columns"
     assert len(cur.description) == 9, (
         f"CTE query returned {len(cur.description)} columns, expected 9. "
         "Check column aliases in cte_select_activity_detail.sql."

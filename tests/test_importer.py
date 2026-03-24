@@ -63,9 +63,9 @@ def src_conn():
 def test_target_db_connection(tgt_conn):
     """Verify importer.tgt_creds() yields a valid, live connection to the target DB."""
     assert tgt_conn.is_connected(), "Target DB connection should be active"
-    assert isinstance(tgt_conn, MySQLConnectionAbstract), (
-        "Expected a MySQLConnectionAbstract instance from mysql.connector.connect()"
-    )
+    assert isinstance(
+        tgt_conn, MySQLConnectionAbstract
+    ), "Expected a MySQLConnectionAbstract instance from mysql.connector.connect()"
 
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -87,9 +87,9 @@ def test_executemany_preparation(tgt_conn):
     # ── Part A: unit — validate the SQL string structure ────────────────
     insert_sql = importer._build_insert_sql()
 
-    assert f"INSERT INTO {importer.TARGET_TABLE}" in insert_sql, (
-        "INSERT statement must reference TARGET_TABLE"
-    )
+    assert (
+        f"INSERT INTO {importer.TARGET_TABLE}" in insert_sql
+    ), "INSERT statement must reference TARGET_TABLE"
     assert insert_sql.count("%s") == len(importer.TARGET_COLS), (
         f"Expected {len(importer.TARGET_COLS)} %s placeholders, "
         f"got {insert_sql.count('%s')}"
@@ -102,21 +102,21 @@ def test_executemany_preparation(tgt_conn):
     #   0-3: TEXT / VARCHAR(255)   4: INT   5: VARCHAR(255)
     #   6: DATETIME                7: INT   8: LONGTEXT
     synthetic_row = (
-        "Test Assignee",                         # Assignee_Name_act
-        "Test Target",                           # Target_Name_act
-        "source@test.com",                       # Source_Email_act
-        "target@test.com",                       # Target_Email_act
-        35,                                      # Activity_Type_act
-        "Test Subject",                          # Subject_act
-        datetime.datetime(2022, 1, 1, 12, 0, 0), # Activity_Date_act
-        1,                                       # Activity_Status_act
-        "Test details",                          # Activity_Details_act
+        "Test Assignee",  # Assignee_Name_act
+        "Test Target",  # Target_Name_act
+        "source@test.com",  # Source_Email_act
+        "target@test.com",  # Target_Email_act
+        35,  # Activity_Type_act
+        "Test Subject",  # Subject_act
+        datetime.datetime(2022, 1, 1, 12, 0, 0),  # Activity_Date_act
+        1,  # Activity_Status_act
+        "Test details",  # Activity_Details_act
     )
 
     cursor = tgt_conn.cursor()
-    importer.ensure_table(cursor)               # DDL: implicit commit in MySQL
-    cursor.execute(insert_sql, synthetic_row)   # DML: proves SQL compiles vs schema
-    tgt_conn.rollback()                         # discard the single test row
+    importer.ensure_table(cursor)  # DDL: implicit commit in MySQL
+    cursor.execute(insert_sql, synthetic_row)  # DML: proves SQL compiles vs schema
+    tgt_conn.rollback()  # discard the single test row
 
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -135,7 +135,7 @@ def test_run_writes_to_target(src_conn, tgt_conn):
     importer.run() opens and closes its own target connection internally; tgt_conn
     is used only for the post-insert COUNT(*) verification.
     """
-    START, END = "20220101000000", "20220101235959"
+    START, END = "20220110000000", "20220110235959"
 
     # Pull live source data through the production query function.
     rows = query_runner.run_query2(src_conn, START, END)
@@ -143,14 +143,14 @@ def test_run_writes_to_target(src_conn, tgt_conn):
 
     # Delegate entirely to the production importer — no SQL recreated here.
     inserted = importer.run(rows, importer.TARGET_COLS)
-    assert inserted == len(rows), (
-        f"importer.run() reported {inserted} inserted rows, expected {len(rows)}"
-    )
+    assert inserted == len(
+        rows
+    ), f"importer.run() reported {inserted} inserted rows, expected {len(rows)}"
 
     # Verify the write using the fixture connection (separate from run()'s connection).
     cur = tgt_conn.cursor()
     cur.execute(f"SELECT COUNT(*) FROM {importer.TARGET_TABLE}")
     (count,) = cur.fetchone()
-    assert count == len(rows), (
-        f"Target table has {count} rows after import; expected {len(rows)}"
-    )
+    assert count == len(
+        rows
+    ), f"Target table has {count} rows after import; expected {len(rows)}"
