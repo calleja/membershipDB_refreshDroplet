@@ -81,6 +81,17 @@ def ensure_table(cursor):
         raise
 
 
+def _build_insert_sql() -> str:
+    """Build the parameterized INSERT statement from TARGET_TABLE and TARGET_COLS.
+
+    Returns a SQL string with %s placeholders ready for cursor.executemany().
+    Pure function — no side effects, no DB access.
+    """
+    placeholders = ", ".join(["%s"] * len(TARGET_COLS))
+    col_names = ", ".join(TARGET_COLS)
+    return f"INSERT INTO {TARGET_TABLE} ({col_names}) VALUES ({placeholders})"
+
+
 def run(rows: list, cols: list):
     """Write the in-memory resultset into the target staging table.
 
@@ -126,9 +137,7 @@ def run(rows: list, cols: list):
         ensure_table(cursor)
 
         # DML phase: batch insert with executemany
-        placeholders = ", ".join(["%s"] * len(TARGET_COLS))
-        col_names = ", ".join(TARGET_COLS)
-        insert_sql = f"INSERT INTO {TARGET_TABLE} ({col_names}) VALUES ({placeholders})"
+        insert_sql = _build_insert_sql()
 
         cursor.executemany(insert_sql, rows)
         conn.commit()
