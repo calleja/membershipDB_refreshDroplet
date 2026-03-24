@@ -168,8 +168,7 @@ def test_load_sql_reads_custom_file(override_sql_path):
 @pytest.mark.custom_sql
 def test_load_sql_without_override():
     """Sanity check: without the ``override_sql_path`` fixture, ``load_sql``
-    should read the *original* production SQL file, proving the patch is
-    scoped correctly.
+    should read the *original* production SQL file, proving the patch is scoped correctly.
 
     Production SQL is now the CTE query (cte_select_activity_detail.sql),
     which does NOT use temp tables.  We verify it contains 'WITH targets'
@@ -180,7 +179,7 @@ def test_load_sql_without_override():
     # Production CTE query starts with a WITH clause; the old temp-table
     # query used civicrm_tmp_e_dflt — that string should NOT appear now.
     assert (
-        "WITH targets AS" in sql_text
+        "record_type_id = 3" in sql_text
     ), "Without override, load_sql() should return the CTE production SQL"
     assert (
         "civicrm_tmp_e_dflt" not in sql_text

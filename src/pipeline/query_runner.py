@@ -15,7 +15,7 @@ from mysql.connector.abstracts import MySQLConnectionAbstract
 # Requires MySQL 8.0+ on the source server.
 SQL_PATH = os.path.abspath(
     os.path.join(
-        os.path.dirname(__file__), "..", "..", "sql", "cte_select_activity_detail.sql"
+        os.path.dirname(__file__), "..", "..", "sql", "derived_table_select_activity.sql"
     )
 )
 
