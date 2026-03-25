@@ -24,7 +24,7 @@ requires-python = ">=3.10"
 test = ["pytest"]
 
 [project.scripts]
-activity-pipeline = "src.pipeline.cli:main"
+activity-pipeline = "pipeline.cli:main"
 # installs a command as part of my package
 # NOTE: this entry point assumes `src` is on sys.path.  If the package is
 # installed via `pip install -e .`, setuptools may not automatically add

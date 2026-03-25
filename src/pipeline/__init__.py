@@ -3,7 +3,8 @@ from pathlib import Path
 
 try:
     from dotenv import load_dotenv
-    envpath = Path(__file__).parent.parent / ".env"
+
+    envpath = Path(__file__).parent.parent.parent / ".env"
     if envpath.exists():
         load_dotenv(dotenv_path=envpath)
 except ImportError:

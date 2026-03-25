@@ -1,3 +1,19 @@
+# Run this project as a CLI:
+> activity-pipeline sync --start --end
+# Full pipeline: query source CiviCRM → validate shape → INSERT into target DB
+> activity-pipeline sync --start 20250201 --end 20250228
+
+# install location
+/opt/activity-pipeline/
+
+# Cron job in the future
+# /etc/cron.d/activity-pipeline
+0 3 1 * * appuser /opt/activity-pipeline/venv/bin/activity-pipeline sync \
+    --start $(date -d "$(date +%Y-%m-01) -1 month" +%Y%m%d) \
+    --end $(date -d "$(date +%Y-%m-01) -1 day" +%Y%m%d) \
+    >> /var/log/activity-pipeline.log 2>&1
+
+
 cli.main()
 │
 ├─ 1. Parse args → cmd="sync", start="20220101", end="20221231"
