@@ -1,0 +1,180 @@
+civicrm_contact_contact_assignee,civicrm_contact_contact_target,civicrm_contact_contact_source_id,civicrm_contact_contact_assignee_id,civicrm_contact_contact_target_id,civicrm_email_contact_source_email,civicrm_email_contact_target_email,civicrm_activity_id,civicrm_activity_source_record_id,civicrm_activity_activity_type_id,civicrm_activity_activity_subject,civicrm_activity_activity_date_time,civicrm_activity_status_id,civicrm_activity_details
+NULL,Huq, Maya Priya,2,NULL,9618,admin@greenehillfood.coop,priyahuq@gmail.com,99824,11165,35,Status changed from New to Active,2025-02-01 01:54:02,2,NULL
+NULL,Paul, Kimberly,2,NULL,9621,admin@greenehillfood.coop,hikimpp2222@gmail.com,99825,11166,35,Status changed from New to Expired,2025-02-01 01:54:02,2,NULL
+NULL,Paul, Kimberly,2,NULL,9622,admin@greenehillfood.coop,hikimpp2222@gmail.com,99826,11167,35,Status changed from New to Expired,2025-02-01 01:54:02,2,NULL
+NULL,Yoakum, Sophie,2,NULL,9623,admin@greenehillfood.coop,yo.sophie@gmail.com,99827,11168,35,Status changed from New to Expired,2025-02-01 01:54:02,2,NULL
+NULL,Lopez, Carles,2,NULL,9624,admin@greenehillfood.coop,carleslopezpenalver@gmail.com,99828,11169,35,Status changed from New to Expired,2025-02-01 01:54:02,2,NULL
+NULL,Parker, Brendan,2,NULL,9625,admin@greenehillfood.coop,brendan.parker@gmail.com,99829,11170,35,Status changed from New to Expired,2025-02-01 01:54:02,2,NULL
+NULL,Little, Tyler,10142,NULL,10142,ytelttil@gmail.com,ytelttil@gmail.com,99830,11441,7,Trial Membership - Trial Plan Application - Status: New,2025-02-01 04:02:38,2,NULL
+NULL,Tran, Alaska,5621,NULL,5621,alaska.tran@gmail.com,alaska.tran@gmail.com,99835,11442,7,Lettuce Plan - Become a Member-Owner - Step 2 - Status: New,2025-02-01 09:51:36,2,NULL
+NULL,Clark, Laurielle,557,NULL,10143,it@greenehillfood.coop,laurielleclark@gmail.com,99839,11443,7,Park Slope Member - Status: New,2025-02-01 10:05:35,2,NULL
+NULL,PHILLIPS, WENDYMERLENE,557,NULL,10145,it@greenehillfood.coop,wendymerlene@gmail.com,99844,11444,7,Central Brooklyn Food Co-op Member - Status: New,2025-02-01 11:16:52,2,NULL
+NULL,Epstein, Emma,10146,NULL,10146,emsidepstein@gmail.com,emsidepstein@gmail.com,99847,11445,7,Trial Membership - Trial Plan Application - Status: New,2025-02-01 11:25:53,2,NULL
+NULL,Eichner, Daniel,10147,NULL,10147,deichner@gmail.com,deichner@gmail.com,99851,11446,7,Trial Membership - Trial Plan Application - Status: New,2025-02-01 11:30:31,2,NULL
+NULL,delacruz, aurora,9499,NULL,9499,auroraborealis1013@icloud.com,auroraborealis1013@icloud.com,99867,11447,7,Lettuce Plan - Become a Member-Owner - Step 2 - Status: New,2025-02-01 12:25:52,2,NULL
+NULL,nakagawa, iki,557,NULL,10148,it@greenehillfood.coop,iki@ikinakagawa.com,99877,11448,7,Park Slope Member - Status: New,2025-02-01 13:31:27,2,NULL
+NULL,Ollek, Shedo,557,NULL,7820,it@greenehillfood.coop,shedoollek@gmail.com,99905,11449,7,Park Slope Member - Status: New,2025-02-01 15:29:55,2,NULL
+NULL,Whysel, Josephine,8597,NULL,8569,joerickard@fastmail.com,jaywhysel@gmail.com,99941,10374,35,Status changed from General Leave to Re-activated,2025-02-01 17:45:27,2,NULL
+NULL,Sugarek, Sanjay,8597,NULL,5329,joerickard@fastmail.com,sanjay.sugarek@gmail.com,99947,6699,35,Status changed from Active to Cancelled,2025-02-01 19:05:59,2,NULL
+NULL,Boitier, Matthieu,8597,NULL,5833,joerickard@fastmail.com,matthieu.boitier@gmail.com,99948,7200,35,Status changed from Active to Parental Leave,2025-02-01 21:24:40,2,NULL
+NULL,Sugarek, Sanjay,8597,NULL,5329,joerickard@fastmail.com,sanjay.sugarek@gmail.com,99950,6699,35,Status changed from Cancelled to General Leave,2025-02-01 22:37:46,2,NULL
+NULL,Mani, Anjali,2,NULL,9628,admin@greenehillfood.coop,anjalirebekah@gmail.com,99965,11171,35,Status changed from New to Expired,2025-02-02 01:54:02,2,NULL
+NULL,Bergmann, R.J.,2,NULL,9629,admin@greenehillfood.coop,rjbergmann@gmail.com,99966,11172,35,Status changed from New to Expired,2025-02-02 01:54:03,2,NULL
+NULL,Babikir, Zainab,10161,NULL,10161,zababikir@gmail.com,zababikir@gmail.com,99968,11450,7,Trial Membership - Trial Plan Application - Status: New,2025-02-02 10:14:20,2,NULL
+NULL,Hason, Sam,557,NULL,10162,it@greenehillfood.coop,sam.m.hason@gmail.com,99974,11451,7,Park Slope Member - Status: New,2025-02-02 10:37:23,2,NULL
+NULL,Laufer, Benjamin,10163,NULL,10163,benjlaufer@gmail.com,benjlaufer@gmail.com,100005,11452,7,Trial Membership - Trial Plan Application - Status: New,2025-02-02 13:27:18,2,NULL
+NULL,Adelson, Cara,10164,NULL,10164,cara.adelson@gmail.com,cara.adelson@gmail.com,100019,11453,7,Trial Membership - Trial Plan Application - Status: New,2025-02-02 13:58:39,2,NULL
+NULL,Carter, Cale,10165,NULL,10165,arcavalier133@gmail.com,arcavalier133@gmail.com,100030,11454,7,Trial Membership - Trial Plan Application - Status: New,2025-02-02 14:33:15,2,NULL
+NULL,a, alex,10166,NULL,10166,alexxxduck@gmail.com,alexxxduck@gmail.com,100031,11455,7,Trial Membership - Trial Plan Application - Status: New,2025-02-02 14:34:30,2,NULL
+NULL,pedersen, maya,557,NULL,6828,it@greenehillfood.coop,weourus2@gmail.com,100044,11456,7,Park Slope Member - Status: New,2025-02-02 14:48:51,2,NULL
+NULL,vento, elizabeth,557,NULL,10167,it@greenehillfood.coop,elizabeth.vento@gmail.com,100045,11457,7,Park Slope Member - Status: New,2025-02-02 14:49:56,2,NULL
+NULL,Hall, murray,557,NULL,10168,it@greenehillfood.coop,muzapan@mac.com,100077,11459,7,Park Slope Member - Status: New,2025-02-02 16:29:28,2,NULL
+NULL,Campbell-Gross, Isabel,10169,NULL,10169,isabel.campbell.gross@gmail.com,isabel.campbell.gross@gmail.com,100099,11460,7,Trial Membership - Trial Plan Application - Status: New,2025-02-02 18:15:49,2,NULL
+NULL,Zhao, Wenqi,2,NULL,9635,admin@greenehillfood.coop,wqzh00@hotmail.com,100115,11173,35,Status changed from New to Expired,2025-02-03 01:54:03,2,NULL
+NULL,Winger, Catherine,2,NULL,9637,admin@greenehillfood.coop,catherinewinger850@gmail.com,100116,11174,35,Status changed from New to Expired,2025-02-03 01:54:03,2,NULL
+NULL,Kocher, Eva,2,NULL,9256,admin@greenehillfood.coop,evahkocher@gmail.com,100117,11175,35,Status changed from New to Active,2025-02-03 01:54:03,2,NULL
+NULL,Xifaras, Alexandra,2,NULL,9639,admin@greenehillfood.coop,axifaras@pratt.edu,100118,11176,35,Status changed from New to Expired,2025-02-03 01:54:03,2,NULL
+NULL,Hughes, Wil,8597,NULL,8887,joerickard@fastmail.com,wfjh.nyc@gmail.com,100119,10642,35,Status changed from Active to Deactivated,2025-02-03 12:29:11,2,NULL
+NULL,King, Paige,8597,NULL,8896,joerickard@fastmail.com,paigeking84@gmail.com,100120,10796,35,Status changed from Active to Deactivated,2025-02-03 12:30:55,2,NULL
+NULL,Reilly, James,9652,NULL,9652,jamestreilly@outlook.com,jamestreilly@outlook.com,100123,11461,7,Lettuce Plan - Become a Member-Owner - Step 2 - Status: New,2025-02-03 12:47:30,2,NULL
+NULL,Risman, Rebecca,10180,NULL,10180,rebecca.risman17@gmail.com,rebecca.risman17@gmail.com,100139,11462,7,Trial Membership - Trial Plan Application - Status: New,2025-02-03 16:00:37,2,NULL
+NULL,Davis, Alya,557,NULL,10181,it@greenehillfood.coop,alyasophai@gmail.com,100149,11463,7,Park Slope Member - Status: New,2025-02-03 16:47:09,2,NULL
+NULL,Davis, Alya,557,NULL,10182,it@greenehillfood.coop,alyasophia@gmail.com,100151,11464,7,Park Slope Member - Status: New,2025-02-03 16:48:31,2,NULL
+NULL,Arballo, Eve,8990,NULL,8990,evearballophoto@gmail.com,evearballophoto@gmail.com,100163,10749,35,Status changed from Expired to Active,2025-02-03 17:16:12,2,NULL
+NULL,Ye, Tad,10183,NULL,10183,ye.tad25@gmail.com,ye.tad25@gmail.com,100175,11465,7,Trial Membership - Trial Plan Application - Status: New,2025-02-03 17:36:38,2,NULL
+NULL,Gilbert, Aaron,10184,NULL,10184,aaronjgilbert@gmail.com,aaronjgilbert@gmail.com,100180,11466,7,Trial Membership - Trial Plan Application - Status: New,2025-02-03 17:58:47,2,NULL
+NULL,Manor, Sharrin,9671,NULL,9671,sharrinmanor@gmail.com,sharrinmanor@gmail.com,100190,11467,7,Lettuce Plan - Become a Member-Owner - Step 2 - Status: New,2025-02-03 18:09:31,2,NULL
+NULL,Scott, Chloe,10186,NULL,10186,chloescottfitness@gmail.com,chloescottfitness@gmail.com,100208,11468,7,Trial Membership - Trial Plan Application - Status: New,2025-02-03 18:55:34,2,NULL
+NULL,Preis, Emily,10187,NULL,10187,emilyelsapreis@gmail.com,emilyelsapreis@gmail.com,100212,11469,7,Trial Membership - Trial Plan Application - Status: New,2025-02-03 19:00:52,2,NULL
+NULL,Stern, Alicia,10188,NULL,10188,aliciamstern@gmail.com,aliciamstern@gmail.com,100217,11470,7,Trial Membership - Trial Plan Application - Status: New,2025-02-03 19:08:13,2,NULL
+NULL,Seegers, J.E. Molly,2,NULL,2737,admin@greenehillfood.coop,jem.seegers@gmail.com,100234,3495,35,Status changed from Re-activated to Active,2025-02-04 01:54:01,2,NULL
+NULL,Page, Emma,2,NULL,9341,admin@greenehillfood.coop,pepage00@gmail.com,100235,11034,35,Status changed from Active to Expired,2025-02-04 01:54:02,2,NULL
+NULL,Hussien, Mohamed Sammy,2,NULL,9331,admin@greenehillfood.coop,dasocachamp@aol.com,100236,11037,35,Status changed from Active to Expired,2025-02-04 01:54:02,2,NULL
+NULL,Fracentese, Michael,2,NULL,9643,admin@greenehillfood.coop,mpfracentese@gmail.com,100237,11177,35,Status changed from New to Expired,2025-02-04 01:54:02,2,NULL
+NULL,Hulsebusch, Maxwell,2,NULL,9644,admin@greenehillfood.coop,hulsebuschm@gmail.com,100238,11178,35,Status changed from New to Expired,2025-02-04 01:54:02,2,NULL
+NULL,B, Naomi,2,NULL,9645,admin@greenehillfood.coop,okfrog@gmail.com,100239,11179,35,Status changed from New to Expired,2025-02-04 01:54:02,2,NULL
+NULL,Klass, Asha,10189,NULL,10189,ashaklass@gmail.com,ashaklass@gmail.com,100241,11471,7,Trial Membership - Trial Plan Application - Status: New,2025-02-04 10:15:49,2,NULL
+NULL,Bergmann, R.J.,9629,NULL,9629,rjbergmann@gmail.com,rjbergmann@gmail.com,100246,11472,7,Lettuce Plan - Become a Member-Owner - Step 2 - Status: New,2025-02-04 11:20:06,2,NULL
+NULL,Belvin, Eleanor,10191,NULL,10191,eleanorbelvin@gmail.com,eleanorbelvin@gmail.com,100249,11473,7,Trial Membership - Trial Plan Application - Status: New,2025-02-04 11:28:55,2,NULL
+NULL,Peterson, Rachel,10192,NULL,10192,rachel.peterson824@gmail.com,rachel.peterson824@gmail.com,100254,11474,7,Zucchini Plan - Trial Plan Application - Status: New,2025-02-04 12:36:54,2,NULL
+NULL,Fleischner, Nellie,557,NULL,10090,it@greenehillfood.coop,nelliejean@gmail.com,100259,11475,7,Park Slope Member - Status: New,2025-02-04 13:13:44,2,NULL
+NULL,Galarza, Jose,10197,NULL,10197,joseg4583@gmail.com,joseg4583@gmail.com,100308,11476,7,Zucchini Plan - Trial Plan Application - Status: New,2025-02-04 19:28:20,2,NULL
+NULL,Lindsay, Alverneq,2,NULL,9646,admin@greenehillfood.coop,alverneqlindsay@gmail.com,100330,11180,35,Status changed from New to Expired,2025-02-05 01:54:02,2,NULL
+NULL,Reilly, James,2,NULL,9652,admin@greenehillfood.coop,jamestreilly@outlook.com,100331,11181,35,Status changed from New to Expired,2025-02-05 01:54:02,2,NULL
+NULL,Cassell, Isabella,789,NULL,9148,sarita639@gmail.com,isabella.cassell@gmail.com,100332,10913,35,Status changed from Active to Cancelled,2025-02-05 08:25:44,2,NULL
+NULL,dughri, noor,10203,NULL,10203,ndughri@yahoo.com,ndughri@yahoo.com,100334,11477,7,Trial Membership - Trial Plan Application - Status: New,2025-02-05 14:54:34,2,NULL
+NULL,Heathcote, Erica,557,NULL,10207,it@greenehillfood.coop,heathcotee@gmail.com,100355,11478,7,Park Slope Member - Status: New,2025-02-05 17:14:42,2,NULL
+NULL,Reilly, Nora,10208,NULL,10208,norakathleenreilly@gmail.com,norakathleenreilly@gmail.com,100369,11479,7,Trial Membership - Trial Plan Application - Status: New,2025-02-05 18:30:34,2,NULL
+NULL,NULL,7614,NULL,NULL,nethanel.kohen@gmail.com,NULL,100381,9348,35,Status changed from Expired to Active,2025-02-05 19:14:29,2,NULL
+NULL,rao, mallika,2,NULL,9653,admin@greenehillfood.coop,mallika26@gmail.com,100404,11182,35,Status changed from New to Active,2025-02-06 01:54:03,2,NULL
+NULL,Cabrera Zapata, Monserrat,2,NULL,9654,admin@greenehillfood.coop,monsezapata@gmail.com,100405,11183,35,Status changed from New to Expired,2025-02-06 01:54:03,2,NULL
+NULL,Davidson, Naomi,2,NULL,9345,admin@greenehillfood.coop,naomirosedavidson@gmail.com,100406,11184,35,Status changed from New to Active,2025-02-06 01:54:03,2,NULL
+NULL,Danley, Sarah,9212,NULL,9212,srdanley@gmail.com,srdanley@gmail.com,100409,10965,36,Type changed from Zucchini Plan to Lettuce Plan,2025-02-06 09:16:07,2,NULL
+NULL,Glover, Lauren,10216,NULL,10216,laurenglover@gmail.com,laurenglover@gmail.com,100414,11480,7,Zucchini Plan - Trial Plan Application - Status: New,2025-02-06 12:38:27,2,NULL
+NULL,Lee, Mina,10219,NULL,10219,minalee516@gmail.com,minalee516@gmail.com,100423,11481,7,Trial Membership - Trial Plan Application - Status: New,2025-02-06 13:39:18,2,NULL
+NULL,Cordero, Natalie,10218,NULL,10218,natmcord@proton.me,natmcord@proton.me,100426,11482,7,Trial Membership - Trial Plan Application - Status: New,2025-02-06 13:40:26,2,NULL
+NULL,Nightingale, Olivia,10220,NULL,10220,on320@nyu.edu,on320@nyu.edu,100429,11483,7,Trial Membership - Trial Plan Application - Status: New,2025-02-06 13:48:37,2,NULL
+NULL,Reilly, Rebecca,10221,NULL,10221,rcreilly5@gmail.com,rcreilly5@gmail.com,100434,11484,7,Trial Membership - Trial Plan Application - Status: New,2025-02-06 14:12:07,2,NULL
+NULL,Holtz, Nina,10222,NULL,10222,ninamh42@gmail.com,ninamh42@gmail.com,100435,11485,7,Trial Membership - Trial Plan Application - Status: New,2025-02-06 14:12:21,2,NULL
+NULL,Saunders, Trent,557,NULL,8775,it@greenehillfood.coop,trensaun@gmail.com,100451,11486,7,Park Slope Member - Status: New,2025-02-06 16:11:23,2,NULL
+NULL,Saunders, Trent,557,NULL,8775,it@greenehillfood.coop,trensaun@gmail.com,100452,11487,7,Park Slope Member - Status: New,2025-02-06 16:11:27,2,NULL
+NULL,Saunders, Trent,557,NULL,8775,it@greenehillfood.coop,trensaun@gmail.com,100453,11488,7,Park Slope Member - Status: New,2025-02-06 16:11:29,2,NULL
+NULL,Saunders, Trent,557,NULL,8775,it@greenehillfood.coop,trensaun@gmail.com,100455,11489,7,Park Slope Member - Status: New,2025-02-06 16:12:12,2,NULL
+NULL,Saunders, Trent,557,NULL,8775,it@greenehillfood.coop,trensaun@gmail.com,100456,11490,7,Park Slope Member - Status: New,2025-02-06 16:12:15,2,NULL
+NULL,yokoyama, tomohiko,557,NULL,9476,it@greenehillfood.coop,tomohikoyo@gmail.com,100458,11491,7,Park Slope Member - Status: New,2025-02-06 16:30:43,2,NULL
+NULL,scanlon, miles,557,NULL,8782,it@greenehillfood.coop,scanlonmiles@gmail.com,100459,11492,7,Central Brooklyn Food Co-op Member - Status: New,2025-02-06 16:59:17,2,NULL
+NULL,Weisler, Valerie,10226,NULL,10226,valerieweisler@gmail.com,valerieweisler@gmail.com,100477,11493,7,Trial Membership - Trial Plan Application - Status: New,2025-02-06 18:05:06,2,NULL
+NULL,nakagawa, iki,10148,NULL,10148,iki@ikinakagawa.com,iki@ikinakagawa.com,100495,11448,36,Type changed from Park Slope Member to Lettuce Plan,2025-02-06 19:54:50,2,NULL
+NULL,Dales, Nagela,10228,NULL,10228,ndales12@gmail.com,ndales12@gmail.com,100497,11494,7,Trial Membership - Trial Plan Application - Status: New,2025-02-06 20:27:52,2,NULL
+NULL,Johnson, Clare M,2,NULL,9655,admin@greenehillfood.coop,claremjohnson@gmail.com,100510,11185,35,Status changed from New to Expired,2025-02-07 01:54:02,2,NULL
+NULL,Brock, Amelia,2,NULL,9656,admin@greenehillfood.coop,amelia.brock@gmail.com,100511,11186,35,Status changed from New to Expired,2025-02-07 01:54:02,2,NULL
+NULL,King, lucie,557,NULL,10235,it@greenehillfood.coop,lucci4908@msn.com,100526,11495,7,Park Slope Member - Status: New,2025-02-07 14:50:23,2,NULL
+NULL,King, lucie,557,NULL,10235,it@greenehillfood.coop,lucci4908@msn.com,100527,11496,7,Park Slope Member - Status: New,2025-02-07 14:50:33,2,NULL
+NULL,King, lucie,557,NULL,10235,it@greenehillfood.coop,lucci4908@msn.com,100528,11497,7,Park Slope Member - Status: New,2025-02-07 14:50:50,2,NULL
+NULL,King, luciana,557,NULL,10236,it@greenehillfood.coop,lucci4908@msn.com,100529,11498,7,Park Slope Member - Status: New,2025-02-07 14:50:57,2,NULL
+NULL,Pan, Ethan,10237,NULL,10237,ethanpan1@hotmail.com,ethanpan1@hotmail.com,100535,11499,7,Trial Membership - Trial Plan Application - Status: New,2025-02-07 15:13:43,2,NULL
+NULL,Garral, Valerie,10238,NULL,10238,valeriegarral@yahoo.com,valeriegarral@yahoo.com,100539,11500,7,Trial Membership - Trial Plan Application - Status: New,2025-02-07 15:17:01,2,NULL
+NULL,cooper, jocelyn,557,NULL,10240,it@greenehillfood.coop,cooper.jocelyn@gmail.com,100563,11501,7,Park Slope Member - Status: New,2025-02-07 17:03:00,2,NULL
+NULL,cooper, jocelyn,557,NULL,10240,it@greenehillfood.coop,cooper.jocelyn@gmail.com,100564,11502,7,Park Slope Member - Status: New,2025-02-07 17:04:22,2,NULL
+NULL,cooper, jocelyn,557,NULL,10240,it@greenehillfood.coop,cooper.jocelyn@gmail.com,100565,11503,7,Park Slope Member - Status: New,2025-02-07 17:04:23,2,NULL
+NULL,cooper, jocelyn,557,NULL,10240,it@greenehillfood.coop,cooper.jocelyn@gmail.com,100566,11504,7,Park Slope Member - Status: New,2025-02-07 17:06:09,2,NULL
+NULL,cooper, jocelyn,557,NULL,10240,it@greenehillfood.coop,cooper.jocelyn@gmail.com,100567,11505,7,Park Slope Member - Status: New,2025-02-07 17:06:29,2,NULL
+NULL,cooper, jocelyn,557,NULL,10240,it@greenehillfood.coop,cooper.jocelyn@gmail.com,100568,11506,7,Park Slope Member - Status: New,2025-02-07 17:06:30,2,NULL
+NULL,cooper, jocelyn,557,NULL,10240,it@greenehillfood.coop,cooper.jocelyn@gmail.com,100569,11507,7,Park Slope Member - Status: New,2025-02-07 17:06:30,2,NULL
+NULL,cooper, jocelyn,557,NULL,10240,it@greenehillfood.coop,cooper.jocelyn@gmail.com,100570,11508,7,Park Slope Member - Status: New,2025-02-07 17:07:16,2,NULL
+NULL,Layman, Chester,24,NULL,24,cheslayman@gmail.com,cheslayman@gmail.com,100573,20,35,Status changed from Cancelled to Active,2025-02-07 17:08:40,2,NULL
+NULL,Layman, Chester,24,NULL,24,cheslayman@gmail.com,cheslayman@gmail.com,100574,20,36,Type changed from Zucchini Plan to Lettuce Plan,2025-02-07 17:08:40,2,NULL
+NULL,Ollek, Shedo,557,NULL,7820,it@greenehillfood.coop,shedoollek@gmail.com,100577,11509,7,Park Slope Member - Status: New,2025-02-07 17:30:05,2,NULL
+NULL,Ollek, Shedo,557,NULL,7820,it@greenehillfood.coop,shedoollek@gmail.com,100578,11510,7,Park Slope Member - Status: New,2025-02-07 17:30:07,2,NULL
+NULL,Ollek, Shedo,557,NULL,7820,it@greenehillfood.coop,shedoollek@gmail.com,100579,11511,7,Park Slope Member - Status: New,2025-02-07 17:30:07,2,NULL
+NULL,Strobach, Anneke,789,NULL,9837,sarita639@gmail.com,annekeskh@gmail.com,100583,11266,35,Status changed from New to Cancelled,2025-02-07 18:02:44,2,NULL
+NULL,Kosieradzki, Nicholas,10242,NULL,10242,n.kosieradzki@gmail.com,n.kosieradzki@gmail.com,100588,11512,7,Trial Membership - Trial Plan Application - Status: New,2025-02-07 18:23:35,2,NULL
+NULL,Desormeaux, Jaime,557,NULL,10244,it@greenehillfood.coop,ms.desormeaux@gmail.com,100600,11513,7,Park Slope Member - Status: New,2025-02-07 19:45:55,2,NULL
+NULL,Desormeaux, Jaime,557,NULL,10244,it@greenehillfood.coop,ms.desormeaux@gmail.com,100601,11514,7,Park Slope Member - Status: New,2025-02-07 19:46:04,2,NULL
+NULL,odonnellmaggie2@gmail.com,2,NULL,6779,admin@greenehillfood.coop,odonnellmaggie2@gmail.com,100613,8312,35,Status changed from Active to Expired,2025-02-08 01:54:01,2,NULL
+NULL,Aiyevbomwan, Osaosemwen,2,NULL,9662,admin@greenehillfood.coop,aiyevbomwan.o@gmail.com,100614,11187,35,Status changed from New to Expired,2025-02-08 01:54:02,2,NULL
+NULL,Chen, Roland,2,NULL,9663,admin@greenehillfood.coop,rchn.rc@gmail.com,100615,11188,35,Status changed from New to Expired,2025-02-08 01:54:02,2,NULL
+NULL,Tuiach, Michael,10252,NULL,10252,michaeltuiach@gmail.com,michaeltuiach@gmail.com,100632,11515,7,Trial Membership - Trial Plan Application - Status: New,2025-02-08 12:25:23,2,NULL
+NULL,Levin, Madeleine,557,NULL,8469,it@greenehillfood.coop,levin.madeleine@gmail.com,100637,11516,7,Park Slope Member - Status: New,2025-02-08 12:48:34,2,NULL
+NULL,Levin, Madeleine,557,NULL,8469,it@greenehillfood.coop,levin.madeleine@gmail.com,100638,11517,7,Park Slope Member - Status: New,2025-02-08 12:48:38,2,NULL
+NULL,Payne, Wendell,557,NULL,9982,it@greenehillfood.coop,ljelly01@aol.com,100639,11518,7,Park Slope Member - Status: New,2025-02-08 12:58:38,2,NULL
+NULL,Schwartz, Mitch,10255,NULL,10255,mitchschwartz8@gmail.com,mitchschwartz8@gmail.com,100680,11523,7,Trial Membership - Trial Plan Application - Status: New,2025-02-08 15:04:01,2,NULL
+NULL,Middleton, Madison,557,NULL,10256,it@greenehillfood.coop,madison.e.middleton@gmail.com,100686,11524,7,Central Brooklyn Food Co-op Member - Status: New,2025-02-08 15:15:24,2,NULL
+NULL,Middleton, Madison,557,NULL,10256,it@greenehillfood.coop,madison.e.middleton@gmail.com,100687,11525,7,Central Brooklyn Food Co-op Member - Status: New,2025-02-08 15:15:25,2,NULL
+NULL,Slackman, Nik,557,NULL,10257,it@greenehillfood.coop,nikslackman@gmail.com,100694,11526,7,Park Slope Member - Status: New,2025-02-08 15:38:37,2,NULL
+NULL,Slackman, Nik,557,NULL,10257,it@greenehillfood.coop,nikslackman@gmail.com,100695,11527,7,Park Slope Member - Status: New,2025-02-08 15:38:47,2,NULL
+NULL,Slackman, Nik,557,NULL,10257,it@greenehillfood.coop,nikslackman@gmail.com,100696,11528,7,Park Slope Member - Status: New,2025-02-08 15:38:48,2,NULL
+NULL,Slackman, Nik,557,NULL,10257,it@greenehillfood.coop,nikslackman@gmail.com,100697,11529,7,Park Slope Member - Status: New,2025-02-08 15:38:49,2,NULL
+NULL,Slackman, Nik,557,NULL,10257,it@greenehillfood.coop,nikslackman@gmail.com,100698,11530,7,Park Slope Member - Status: New,2025-02-08 15:38:49,2,NULL
+NULL,Slackman, Nik,557,NULL,10257,it@greenehillfood.coop,nikslackman@gmail.com,100699,11531,7,Park Slope Member - Status: New,2025-02-08 15:38:49,2,NULL
+NULL,Middleton, Madison,10256,NULL,10256,madison.e.middleton@gmail.com,madison.e.middleton@gmail.com,100711,11532,7,Trial Membership - Trial Plan Application - Status: New,2025-02-08 16:04:28,2,NULL
+NULL,Fischer, Katie,789,NULL,7840,sarita639@gmail.com,akatiefischer@gmail.com,100741,9817,35,Status changed from Active to Cancelled,2025-02-08 20:01:39,2,NULL
+NULL,Torres, Taylor,2,NULL,9668,admin@greenehillfood.coop,taylortorres69@gmail.com,100757,11189,35,Status changed from New to Expired,2025-02-09 01:54:02,2,NULL
+NULL,Nagler, Erich,2,NULL,9669,admin@greenehillfood.coop,erich@designmeans.com,100758,11190,35,Status changed from New to Active,2025-02-09 01:54:02,2,NULL
+NULL,Motiwalla, Taher,2,NULL,9670,admin@greenehillfood.coop,tahermotiwalla@gmail.com,100759,11191,35,Status changed from New to Expired,2025-02-09 01:54:02,2,NULL
+NULL,Reed, Carly,10268,NULL,10268,cjreed3@gmail.com,cjreed3@gmail.com,100776,11533,7,Trial Membership - Trial Plan Application - Status: New,2025-02-09 12:06:15,2,NULL
+NULL,Lemasters, k,10269,NULL,10269,theletterkale@gmail.com,theletterkale@gmail.com,100779,11534,7,Trial Membership - Trial Plan Application - Status: New,2025-02-09 12:12:31,2,NULL
+NULL,Camara, Amadou,10270,NULL,10270,aek.camara@gmail.com,aek.camara@gmail.com,100790,11535,7,Trial Membership - Trial Plan Application - Status: New,2025-02-09 13:13:57,2,NULL
+NULL,Fine, Eve,10272,NULL,10272,eve.fine@gmail.com,eve.fine@gmail.com,100807,11536,7,Trial Membership - Trial Plan Application - Status: New,2025-02-09 14:55:09,2,NULL
+NULL,Hayden, Joseph,557,NULL,10277,it@greenehillfood.coop,jbhayden88@gmail.com,100843,11541,7,Park Slope Member - Status: New,2025-02-09 17:08:56,2,NULL
+NULL,Manor, Sharrin,2,NULL,9671,admin@greenehillfood.coop,sharrinmanor@gmail.com,100863,11192,35,Status changed from New to Expired,2025-02-10 01:54:02,2,NULL
+NULL,Poelz, Dorke,2,NULL,9675,admin@greenehillfood.coop,spacecollector@yahoo.com,100864,11193,35,Status changed from New to Active,2025-02-10 01:54:02,2,NULL
+NULL,Akinruli, Iyabo,2,NULL,9676,admin@greenehillfood.coop,iyabodeakinruli@gmail.com,100865,11194,35,Status changed from New to Active,2025-02-10 01:54:02,2,NULL
+NULL,Gardiner, Robert,2,NULL,9677,admin@greenehillfood.coop,robertgardiner1@mac.com,100866,11195,35,Status changed from New to Expired,2025-02-10 01:54:02,2,NULL
+NULL,Rafieyan, Darius,10280,NULL,10280,darius.rafieyan@gmail.com,darius.rafieyan@gmail.com,100867,11542,7,Trial Membership - Trial Plan Application - Status: New,2025-02-10 06:12:54,2,NULL
+NULL,NULL,2977,NULL,NULL,pl@pattylin.info,NULL,100870,3651,35,Status changed from Expired to Active,2025-02-10 10:24:58,2,NULL
+NULL,Williams, Chancellar,10282,NULL,10282,chancellarw@gmail.com,chancellarw@gmail.com,100872,11543,7,Trial Membership - Trial Plan Application - Status: New,2025-02-10 12:17:47,2,NULL
+NULL,Savage, Louisa,557,NULL,10283,it@greenehillfood.coop,llsavage3230@gmail.com,100879,11544,7,Park Slope Member - Status: New,2025-02-10 13:37:23,2,NULL
+NULL,Somogie, Hannah,10284,NULL,10284,hannahsomogie@gmail.com,hannahsomogie@gmail.com,100883,11545,7,Zucchini Plan - Trial Plan Application - Status: New,2025-02-10 13:55:24,2,NULL
+NULL,Reyes, Maya,10286,NULL,10286,mayaelreyes@gmail.com,mayaelreyes@gmail.com,100904,11546,7,Trial Membership - Trial Plan Application - Status: New,2025-02-10 16:45:42,2,NULL
+NULL,Dajani, Adule,10287,NULL,10287,aduledajani6@gmail.com,aduledajani6@gmail.com,100913,11547,7,Trial Membership - Trial Plan Application - Status: New,2025-02-10 17:21:11,2,NULL
+NULL,Hlavaty, Helena,557,NULL,10288,it@greenehillfood.coop,helena.hlavaty@gmail.com,100916,11548,7,Park Slope Member - Status: New,2025-02-10 17:30:40,2,NULL
+NULL,Northland, Karenna,557,NULL,10289,it@greenehillfood.coop,bknorthland@gmail.com,100927,11549,7,Park Slope Member - Status: New,2025-02-10 18:00:52,2,NULL
+NULL,Desormeaux, Jaime,557,NULL,10244,it@greenehillfood.coop,ms.desormeaux@gmail.com,100950,11550,7,Park Slope Member - Status: New,2025-02-10 20:14:24,2,NULL
+NULL,NULL,3285,NULL,NULL,mishoregan@gmail.com,NULL,100963,3927,35,Status changed from Expired to Active,2025-02-11 07:43:57,2,NULL
+NULL,Landis, Michael,10296,NULL,10296,michael.landis.5.2.92@gmail.com,michael.landis.5.2.92@gmail.com,100965,11551,7,Trial Membership - Trial Plan Application - Status: New,2025-02-11 10:21:04,2,NULL
+NULL,Russell, Sophia,3631,NULL,3631,sophia.elizabeth.russell@gmail.com,sophia.elizabeth.russell@gmail.com,100972,11552,7,Lettuce Plan - Become a Member-Owner - Step 2 - Status: New,2025-02-11 13:05:58,2,NULL
+NULL,Bassett, Jennifer,6090,NULL,7406,elizabeth.fella.ef@gmail.com,jenniferbassett@gmail.com,101004,10659,35,Status changed from Active to General Leave,2025-02-11 17:37:33,2,NULL
+NULL,Gonzalez, Gabrielle,6090,NULL,9251,elizabeth.fella.ef@gmail.com,ggaby99@gmail.com,101007,11146,35,Status changed from Active to Cancelled,2025-02-11 17:42:01,2,NULL
+NULL,Partnoy, Natasha,6090,NULL,8780,elizabeth.fella.ef@gmail.com,natasha.partnoy@gmail.com,101008,11294,35,Status changed from New to Cancelled,2025-02-11 17:45:56,2,NULL
+NULL,Saunders, Trent,557,NULL,8775,it@greenehillfood.coop,trensaun@gmail.com,101015,11553,7,Park Slope Member - Status: New,2025-02-11 18:49:59,2,NULL
+NULL,Watson, James,557,NULL,10303,it@greenehillfood.coop,jpratleyw@gmail.com,101018,11554,7,Park Slope Member - Status: New,2025-02-11 19:09:20,2,NULL
+NULL,Mattos, Trevor,2,NULL,9688,admin@greenehillfood.coop,trevor.mattos@gmail.com,101037,11196,35,Status changed from New to Expired,2025-02-12 01:54:02,2,NULL
+NULL,Zhang, Jess,8884,NULL,8884,jessicazhang227@gmail.com,jessicazhang227@gmail.com,101040,10963,36,Type changed from Zucchini Plan to Lettuce Plan,2025-02-12 08:35:52,2,NULL
+NULL,Moore, Charlotte,10312,NULL,10312,chrltmre@gmail.com,chrltmre@gmail.com,101042,11555,7,Trial Membership - Trial Plan Application - Status: New,2025-02-12 08:41:15,2,NULL
+NULL,Royal, Gabby,10315,NULL,10315,gabbylroyal@gmail.com,gabbylroyal@gmail.com,101047,11556,7,Zucchini Plan - Trial Plan Application - Status: New,2025-02-12 12:30:47,2,NULL
+NULL,Ollek, Shedo,557,NULL,7820,it@greenehillfood.coop,shedoollek@gmail.com,101056,11557,7,Park Slope Member - Status: New,2025-02-12 14:06:47,2,NULL
+NULL,Cohen, Benjamin,9132,NULL,9132,ben@brooklynrestoration.com,ben@brooklynrestoration.com,101111,10898,36,Type changed from Zucchini Plan to Lettuce Plan,2025-02-12 20:29:36,2,NULL
+NULL,king, Luciana,557,NULL,10318,it@greenehillfood.coop,lucci00@msn.com,101127,11558,7,Park Slope Member - Status: New,2025-02-12 20:41:26,2,NULL
+NULL,Barrett, Tempris,2,NULL,9692,admin@greenehillfood.coop,tbarrett2012@gmail.com,101141,11197,35,Status changed from New to Expired,2025-02-13 01:54:03,2,NULL
+NULL,Natarajan, Vani,468,NULL,468,vani.natarajan@gmail.com,vani.natarajan@gmail.com,101142,460,35,Status changed from Expired to Active,2025-02-13 08:41:43,2,NULL
+NULL,Bassichis, Morgan,10326,NULL,10326,morganfreed@gmail.com,morganfreed@gmail.com,101155,11559,7,Lettuce Plan - Become a Member-Owner - Step 2 - Status: New,2025-02-13 14:45:46,2,NULL
+NULL,levine, david,557,NULL,6868,it@greenehillfood.coop,dzhon282@gmail.com,101171,11560,7,Park Slope Member - Status: New,2025-02-13 15:40:51,2,NULL
+NULL,Kareem, Radhya,6090,NULL,9247,elizabeth.fella.ef@gmail.com,radhyakareem@gmail.com,101180,11001,35,Status changed from General Leave to Re-activated,2025-02-13 16:37:46,2,NULL
+NULL,NULL,7866,NULL,NULL,hannahwischnia@gmail.com,NULL,101188,9614,35,Status changed from Expired to Active,2025-02-13 17:58:06,2,NULL
+NULL,Klitzman, Jeremy,2,NULL,7644,admin@greenehillfood.coop,jeremyklitzman@gmail.com,101222,9604,35,Status changed from Re-activated to Active,2025-02-14 01:54:02,2,NULL
+NULL,Campero, Sofia,2,NULL,9402,admin@greenehillfood.coop,sofia.cerc@gmail.com,101223,11058,35,Status changed from Active to Expired,2025-02-14 01:54:02,2,NULL
+NULL,Everett, Morgan,7610,NULL,7610,morganjeverett@gmail.com,morganjeverett@gmail.com,101226,11561,7,Lettuce Plan - Become a Member-Owner - Step 2 - Status: New,2025-02-14 01:56:28,2,NULL
+NULL,Gleeson, Asja,557,NULL,10329,it@greenehillfood.coop,asja.gleeson@gmail.com,101247,11562,7,Park Slope Member - Status: New,2025-02-14 16:03:44,2,NULL
+NULL,Cotter, Jacqueline,6090,NULL,5012,elizabeth.fella.ef@gmail.com,jacqueline.grace.cotter@gmail.com,101253,7169,35,Status changed from Active to Medical Leave,2025-02-14 16:57:19,2,NULL
+NULL,Marshall, Lena,6090,NULL,8852,elizabeth.fella.ef@gmail.com,lenasauce@gmail.com,101256,10602,35,Status changed from Active to Cancelled,2025-02-14 17:11:10,2,NULL
