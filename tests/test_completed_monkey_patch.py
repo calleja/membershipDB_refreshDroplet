@@ -130,7 +130,7 @@ def test_run_query_with_custom_sql(override_sql_path, src_conn, start, end):
     ----------
     override_sql_path : fixture
         Patches ``query_runner.SQL_PATH`` → ``tests/sql/test_query.sql``.
-    src_conn : fixture
+    src_conn : fixture (defined above)
         Live MySQL connection to the source database.
     start, end : str
         Timestamp boundaries injected by ``@pytest.mark.parametrize``.
@@ -312,7 +312,7 @@ def test_resultset_column_types(src_conn):
       1         Target_Name_act      str or None
       2         Source_Email_act     str or None
       3         Target_Email_act     str or None
-      4         Activity_Type_act    int
+      4         Activity_Type_act    str or None
       5         Subject_act          str or None
       6         Activity_Date_act    datetime.datetime
       7         Activity_Status_act  int
@@ -330,21 +330,11 @@ def test_resultset_column_types(src_conn):
 
         row = rows[0]
 
-        # Positions 0-3: nullable text fields (names and emails)
-        for pos in (0, 1, 2, 3):
+        # Positions 0-5: nullable text fields (names and emails)
+        for pos in (0, 1, 2, 3, 4, 5):
             assert isinstance(
                 row[pos], (str, type(None))
             ), f"Column {pos} should be str or None, got {type(row[pos]).__name__}"
-
-        # Position 4: Activity_Type_act — integer activity type ID
-        assert isinstance(
-            row[4], int
-        ), f"Column 4 (Activity_Type_act) should be int, got {type(row[4]).__name__}"
-
-        # Position 5: Subject_act — nullable text
-        assert isinstance(
-            row[5], (str, type(None))
-        ), f"Column 5 (Subject_act) should be str or None, got {type(row[5]).__name__}"
 
         # Position 6: Activity_Date_act — datetime
         assert isinstance(

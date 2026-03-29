@@ -4,6 +4,19 @@
 -- Accepts %(start)s / %(end)s in YYYYMMDDhhmmss format.
 -- Currently the PROD .sql
 
+/*
+minimum expected fields
+Target Name <- full name
+Source Email	<- either their personal or IT/admin@ghfc
+Target Email	<- either their personal or IT/admin@ghfc
+Activity Type <- either: 1. 'Membership Signup',2. 'Change Membership Status',
+3. 'Change Membership Type'
+Subject <- full description of activity, ex. "Trial Membership - Trial Plan Application"
+Activity Date	
+Activity Status <- typically "Completed"
+
+*/
+
 SELECT
     GROUP_CONCAT(DISTINCT a.contact_assignee  SEPARATOR '\n\n;') AS Assignee_Name_act,
     GROUP_CONCAT(DISTINCT t.contact_target    SEPARATOR '\n\n;') AS Target_Name_act,
@@ -16,9 +29,12 @@ SELECT
     ELSE act.activity_type_id
     END AS Activity_Type_act,
     -- act.activity_type_id    AS Activity_Type_act,
-    act.subject             AS Subject_act,
+    act.subject             AS Subject_act, 
     act.activity_date_time  AS Activity_Date_act,
-    act.status_id           AS Activity_Status_act,
+    CASE 
+    WHEN act.status_id = 2 THEN 'Completed'
+    ELSE act.status_id 
+    END AS Activity_Status_act,
     act.details             AS Activity_Details_act
 FROM civicrm_activity act
 
