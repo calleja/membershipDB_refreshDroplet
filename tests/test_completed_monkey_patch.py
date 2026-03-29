@@ -48,7 +48,7 @@ from src.pipeline import query_runner, importer
 # directory.  This file returns a different column set than the production
 # CTE query, so tests using override_sql_path exercise a different schema.
 CUSTOM_SQL = os.path.join(
-    os.path.dirname(__file__), "..", "sql", "parameterizedSQL.sql"
+    os.path.dirname(__file__), "..", "sql", "derived_table_select_activity.sql"
 )
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -271,14 +271,13 @@ def test_cte_sql_compiles(src_conn):
     cur = src_conn.cursor()
     # ProgrammingError raised here = SQL syntax problem on the server
     cur.execute(formatted)
+    assert (
+        len(cur.description) == 9
+    ), f"CTE query returned {len(cur.description)} columns, expected 9. Column names received {cur.column_names}."
     cur.fetchall()  # drain the result so the cursor is not left open
     assert (
         cur.description is not None
     ), "cursor.description is None — query returned no columns"
-    assert len(cur.description) == 9, (
-        f"CTE query returned {len(cur.description)} columns, expected 9. "
-        "Check column aliases in cte_select_activity_detail.sql."
-    )
 
 
 def test_run_query2(src_conn):
@@ -289,9 +288,12 @@ def test_run_query2(src_conn):
     """
     start, end = ("20240101000000", "20240301235959")
     try:
+        # rows will be a list of tuples; maybe the first record are the column hearders
         rows = query_runner.run_query2(src_conn, start, end)
         assert isinstance(rows, list), "run_query2 should return a list of row tuples"
         assert len(rows) > 0, "run_query2 returned no rows for the given range"
+        # check the dim of the resultset
+        assert len(rows[0]) == 9, f" the resultset was <> 9; the first row is {rows[0]}"
     except mysql.connector.DatabaseError as e:
         pytest.fail(f"run_query2 raised an unexpected database error: {e}")
 

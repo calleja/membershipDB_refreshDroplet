@@ -5,6 +5,7 @@
 
 # install location
 /opt/activity-pipeline/
+mv -r ./membershipDB_refreshDroplet /opt/activity-pipeline 
 
 # Cron job in the future
 # /etc/cron.d/activity-pipeline

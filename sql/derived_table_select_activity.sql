@@ -2,13 +2,20 @@
 -- CTEs (WITH ... AS) require MariaDB 10.2+; this server is 10.1.x.
 -- Inline subqueries in the FROM clause are equivalent and work on 10.1.
 -- Accepts %(start)s / %(end)s in YYYYMMDDhhmmss format.
+-- Currently the PROD .sql
 
 SELECT
     GROUP_CONCAT(DISTINCT a.contact_assignee  SEPARATOR '\n\n;') AS Assignee_Name_act,
     GROUP_CONCAT(DISTINCT t.contact_target    SEPARATOR '\n\n;') AS Target_Name_act,
     GROUP_CONCAT(DISTINCT s.email_source      SEPARATOR '\n\n;') AS Source_Email_act,
     GROUP_CONCAT(DISTINCT t.email_target      SEPARATOR '\n\n;') AS Target_Email_act,
-    act.activity_type_id    AS Activity_Type_act,
+    CASE 
+    WHEN act.activity_type_id = 7 THEN 'Membership Signup'
+    WHEN act.activity_type_id = 35 THEN 'Change Membership Status'
+    WHEN act.activity_type_id = 36 THEN 'Change Membership Type'
+    ELSE act.activity_type_id
+    END AS Activity_Type_act,
+    -- act.activity_type_id    AS Activity_Type_act,
     act.subject             AS Subject_act,
     act.activity_date_time  AS Activity_Date_act,
     act.status_id           AS Activity_Status_act,

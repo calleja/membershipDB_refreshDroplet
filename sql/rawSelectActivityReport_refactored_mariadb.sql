@@ -10,7 +10,12 @@ SELECT
     GROUP_CONCAT(DISTINCT combined.target_email   SEPARATOR ';') AS civicrm_email_contact_target_email,
     MIN(combined.activity_id)        AS civicrm_activity_id,
     MIN(combined.source_record_id)   AS civicrm_activity_source_record_id,
-    MIN(combined.activity_type_id)   AS civicrm_activity_activity_type_id,
+    -- risky code: accounting for the php layer that converts this to a human readable output, which is not privvy to me in a query
+    CASE 
+    WHEN MIN(combined.activity_type_id) = 7 THEN 'Membership Signup'
+    WHEN MIN(combined.activity_type_id) = 35 THEN 'Change Membership Status'
+    WHEN MIN(combined.activity_type_id) = 36 THEN 'Change Membership Type'
+    END AS civicrm_activity_activity_type_id,
     MIN(combined.subject)            AS civicrm_activity_activity_subject,
     MIN(combined.activity_date_time) AS civicrm_activity_activity_date_time,
     MIN(combined.status_id)          AS civicrm_activity_status_id,
@@ -45,7 +50,7 @@ FROM (
       AND a.is_deleted = 0
       AND a.is_current_revision = 1
       AND a.activity_date_time >= 20250201000000
-      AND a.activity_date_time <= 20250215000000
+      AND a.activity_date_time <= 20250228000000
       AND a.activity_type_id IN (35, 36, 7)
 
     UNION ALL
@@ -75,7 +80,7 @@ FROM (
       AND a.is_deleted = 0
       AND a.is_current_revision = 1
       AND a.activity_date_time >= 20250201000000
-      AND a.activity_date_time <= 20250215000000
+      AND a.activity_date_time <= 20250228000000
       AND a.activity_type_id IN (35, 36, 7)
 
     UNION ALL
@@ -107,7 +112,7 @@ FROM (
       AND a.is_deleted = 0
       AND a.is_current_revision = 1
       AND a.activity_date_time >= 20250201000000
-      AND a.activity_date_time <= 20250215000000
+      AND a.activity_date_time <= 20250228000000
       AND a.activity_type_id IN (35, 36, 7)
 
 ) AS combined
