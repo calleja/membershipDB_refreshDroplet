@@ -315,7 +315,7 @@ def test_resultset_column_types(src_conn):
       4         Activity_Type_act    str or None
       5         Subject_act          str or None
       6         Activity_Date_act    datetime.datetime
-      7         Activity_Status_act  int
+      7         Activity_Status_act  str or None
       8         Activity_Details_act str or None
 
     Parameters
@@ -324,7 +324,7 @@ def test_resultset_column_types(src_conn):
         Live MySQL connection to the source database.
     """
     try:
-        rows = query_runner.run_query(src_conn, "20220101000000", "20220101235959")
+        rows = query_runner.run_query2(src_conn, "20220101000000", "20220101235959")
 
         assert len(rows) > 0, "Need at least one row to validate types"
 
@@ -343,8 +343,8 @@ def test_resultset_column_types(src_conn):
 
         # Position 7: Activity_Status_act — integer status ID
         assert isinstance(
-            row[7], int
-        ), f"Column 7 (Activity_Status_act) should be int, got {type(row[7]).__name__}"
+            row[7], (str, type(None))
+        ), f"Column 7 (Activity_Status_act) should be str, got {type(row[7]).__name__}"
 
         # Position 8: Activity_Details_act — nullable text (LONGTEXT)
         assert isinstance(

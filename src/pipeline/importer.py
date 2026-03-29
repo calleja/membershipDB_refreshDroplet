@@ -71,7 +71,7 @@ def ensure_table(cursor):
                 Activity_Type_act    VARCHAR(255),
                 Subject_act          VARCHAR(255),
                 Activity_Date_act    DATETIME,
-                Activity_Status_act  INT,
+                Activity_Status_act  VARCHAR(255),
                 Activity_Details_act LONGTEXT
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
         """
