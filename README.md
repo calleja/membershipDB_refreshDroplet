@@ -1,5 +1,10 @@
 # Run this project as a CLI:
+- cd into the location of the package
+> cd /opt/activity-pieline
+- activate the venv:
+> . venv/bin/activate
 > activity-pipeline sync --start --end
+> activity-pipeline sync --start 20250201 --end 20250228
 # Full pipeline: query source CiviCRM → validate shape → INSERT into target DB
 > activity-pipeline sync --start 20250201 --end 20250228
 

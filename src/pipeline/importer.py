@@ -38,11 +38,11 @@ def tgt_creds():
         Keyword arguments for mysql.connector.connect().
     """
     return {
-        'host': os.environ['TGT_DB_HOST'],
-        'port': int(os.environ.get('TGT_DB_PORT', 3306)),
-        'user': os.environ['TGT_DB_USER'],
-        'password': os.environ['TGT_DB_PASS'],
-        'database': os.environ['TGT_DB_NAME'],
+        "host": os.environ["TGT_DB_HOST"],
+        "port": int(os.environ.get("TGT_DB_PORT", 3306)),
+        "user": os.environ["TGT_DB_USER"],
+        "password": os.environ["TGT_DB_PASS"],
+        "database": os.environ["TGT_DB_NAME"],
     }
 
 
@@ -68,7 +68,7 @@ def ensure_table(cursor):
                 Target_Name_act      TEXT,
                 Source_Email_act     VARCHAR(255),
                 Target_Email_act     VARCHAR(255),
-                Activity_Type_act    INT,
+                Activity_Type_act    VARCHAR(255),
                 Subject_act          VARCHAR(255),
                 Activity_Date_act    DATETIME,
                 Activity_Status_act  INT,
