@@ -10,7 +10,10 @@
 
 # install location
 /opt/activity-pipeline/
-mv -r ./membershipDB_refreshDroplet /opt/activity-pipeline 
+- when copying new versions, ensure to only copy the contents of the refreshDroplet directory, and not the whole directory itself
+> sudo cp -r /home/lcalleja/membership_db_git/membershipDB_refreshDroplet/. /opt/activity-pipeline
+- if I need to remove previous versions, force it (this code MUST be double-checked):
+> sudo rm -rf /opt/activity-pipeline/*
 
 # Cron job in the future
 # /etc/cron.d/activity-pipeline
